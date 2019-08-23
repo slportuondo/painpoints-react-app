@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
-import { Route, Switch } from 'react-router-dom';
+import PainpointContainer from './PainpointContainer'
 import './App.css';
 
 
@@ -84,6 +84,7 @@ class App extends React.Component {
           <Route exact path='/' render={(props) => <SignIn {...props} />} />
           <Route exact path='/user/login' render={(props) => <Login {...props} login={this.login} />}/>
           <Route exact path='/user/register' render={(props) => <Register {...props} register={this.register} />}/>
+          <Route exact path='/painpoints' render={(props) => <PainpointContainer {...props} />}/>
         </Switch>
 
       </main>
