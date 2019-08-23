@@ -20,7 +20,7 @@ class Login extends React.Component {
 		e.preventDefault()
 
 		this.props.login(this.state)
-		this.props.history.push('/tags')
+		this.props.history.push('/main')
 	}
 
 	render() {
@@ -52,9 +52,9 @@ class Login extends React.Component {
 						/>
 						<button>Log in</button>
 					</form>
-					<message>
+					<div>
 						Not a member? <Link to='/user/register'>Register Here!</Link>
-					</message>
+					</div>
 			</div>
 		)
 	}
