@@ -2,7 +2,6 @@ import React from 'react';
 // import {Route, Switch} from 'react-router-dom';
 import Login from './Login'
 import Register from './Register'
-import Dummy from './Dummy'
 import SignIn from './SignIn'
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -37,7 +36,7 @@ class App extends React.Component {
         ...parsedResponse.data,
       })
 
-      return parsedResponse
+      return parsedResponse;
 
       // this.props.history.push('/tags')
     } else {
@@ -85,7 +84,6 @@ class App extends React.Component {
           <Route exact path='/' render={(props) => <SignIn {...props} />} />
           <Route exact path='/user/login' render={(props) => <Login {...props} login={this.login} />}/>
           <Route exact path='/user/register' render={(props) => <Register {...props} register={this.register} />}/>
-          <Route exact path='/tags' render={(props) => <Dummy {...props}/>}/>
         </Switch>
 
       </main>

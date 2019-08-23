@@ -33,7 +33,7 @@ class Register extends React.Component {
 
 		this.props.register(data);
 
-		this.props.history.push('/tags')
+		this.props.history.push('/main')
 	}
 
 	render() {
@@ -72,9 +72,9 @@ class Register extends React.Component {
 					/>
 					<button>Register</button>
 				</form>
-				<message>
+				<div>
 					Already a member? <Link to='/user/login'>Login</Link>
-				</message>
+				</div>
 			</div>
 		)
 	}
