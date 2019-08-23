@@ -17,7 +17,7 @@ const PainpointList = (props) => {
 	// 	)
 	// })
 
-	const allPainpoints = props.painpoints.filter(pp => pp.category.id !== 2)
+	const allPainpoints = props.painpoints.filter(pp => pp.category.id === 2)
 	.map((painpoint, i) => {
 		return (
 			<li key={i}>

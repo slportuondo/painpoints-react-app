@@ -4,6 +4,7 @@ import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
 import PainpointContainer from './PainpointContainer'
+import SolutionContainer from './SolutionContainer'
 import './App.css';
 
 
@@ -85,6 +86,7 @@ class App extends React.Component {
           <Route exact path='/user/login' render={(props) => <Login {...props} login={this.login} />}/>
           <Route exact path='/user/register' render={(props) => <Register {...props} register={this.register} />}/>
           <Route exact path='/painpoints' render={(props) => <PainpointContainer {...props} />}/>
+          <Route exact path='/solution' render={(props) => <SolutionContainer {...props} />}/>
         </Switch>
 
       </main>
