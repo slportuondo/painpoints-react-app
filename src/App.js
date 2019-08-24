@@ -1,10 +1,11 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
 import PainpointContainer from './PainpointContainer'
 import SolutionContainer from './SolutionContainer'
+import Profile from './Profile'
 import './App.css';
 
 
@@ -15,6 +16,7 @@ class App extends React.Component {
     this.state = {
       username: '',
       email: '',
+      id: ''
     }
   }
 
@@ -34,12 +36,11 @@ class App extends React.Component {
 
     if (parsedResponse) {
       this.setState({
-        ...parsedResponse.data,
+        ...parsedResponse.data
       })
 
-      return parsedResponse;
+      return parsedResponse
 
-      // this.props.history.push('/tags')
     } else {
       console.log('Incorrect username and/or password');
     }
@@ -63,7 +64,7 @@ class App extends React.Component {
 
       if (parsedResponse) {
         this.setState({
-          ...parsedResponse.data,
+          ...parsedResponse.data
         })
 
         return parsedResponse
@@ -87,8 +88,8 @@ class App extends React.Component {
           <Route exact path='/user/register' render={(props) => <Register {...props} register={this.register} />}/>
           <Route exact path='/painpoints' render={(props) => <PainpointContainer {...props} />}/>
           <Route exact path='/solution' render={(props) => <SolutionContainer {...props} />}/>
+          <Route exact path='/user/:id' render={(props) => <Profile {...props} id={this.state.id}/>}/>
         </Switch>
-
       </main>
     )
   }
