@@ -48,7 +48,6 @@ class CreatePainpoint extends Component {
       <form onSubmit={this.handleSubmit}>
         <input type='text' name='head' placeholder='Painpoint name' onChange={this.handleChange} />
         <input type="text" name='body' placeholder='Painpoint description'  onChange={this.handleChange} />
-        </label>
         <button type='Submit'> Submit </button>
       </form>
     )

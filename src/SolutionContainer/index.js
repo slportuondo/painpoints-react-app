@@ -1,5 +1,6 @@
 import React from 'react'
-import SolutionsList from '../SolutionsList'
+import SolutionsList from '../SolutionsList/'
+import CreateSolution from '../SolutionBody/CreateSolution'
 
 
 class SolutionContainer extends React.Component {
@@ -38,9 +39,29 @@ class SolutionContainer extends React.Component {
 		}
 	}
 
+	addSolution = async (data) => {
+		try {
+			const createdSolution = await fetch('http://localhost:8000/solution/', {
+				method: 'POST',
+				credentials: 'include',
+				body: JSON.stringify(data),
+				headers: {
+					'enctype': 'multipart/form-data'
+				}
+			})
+
+			const createdSolutionResponse = await createdSolution.json()
+			console.log(createdSolutionResponse, '<--- createdSolutionResponse');
+
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
 	render() {
 		return (
 			<main>
+				<CreateSolution addSolution={this.addSolution}/>
 				<SolutionsList solutions={this.state.solutions}/>
 			</main>
 		)

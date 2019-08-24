@@ -47,7 +47,7 @@ class App extends React.Component {
 
 
   register = async (data) => {
-    console.log(data, '<--- data in register in app.js');
+    console.log(data, '<--- data in register in App.js');
     try {
       const registerResponse = await fetch('http://localhost:8000/user/register', {
         method: 'POST',
