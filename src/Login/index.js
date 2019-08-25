@@ -9,7 +9,6 @@ class Login extends React.Component {
 			username: '',
 			email: '',
 			password: '',
-			id: ''
 		}
 	}
 
@@ -20,35 +19,32 @@ class Login extends React.Component {
 	handleSubmit = async (e) => {
 		e.preventDefault()
 
-		// this.props.login(this.state)
-		// login = async (data) => {
-		    const loginResponse = await fetch('http://localhost:8000/user/login', {
-		      method: 'POST',
-		      credentials: 'include',
-		      body: JSON.stringify(this.state),
-		      headers: {
-		        'Content-Type': 'application/json'
-		      }
-		    })
+		this.props.login(this.state)
 
-		    const parsedResponse = await loginResponse.json();
-		    console.log(parsedResponse, '<---- parsedResponse in login');
+		this.props.history.push('/categories')
 
-		    if (parsedResponse) {
-		      this.setState({
-		        ...parsedResponse.data
-		      })
+		// const loginResponse = await fetch('http://localhost:8000/user/login', {
+		// 	method: 'POST',
+		// 	credentials: 'include',
+		// 	body: JSON.stringify(this.state),
+		// 	headers: {
+		// 	'Content-Type': 'application/json'
+		// 	}
+		// })
 
-		      // return parsedResponse
+		// const parsedResponse = await loginResponse.json();
+		// console.log(parsedResponse, '<---- parsedResponse in login');
 
-		    } else {
-		      console.log('Incorrect username and/or password');
-		    }
-		  // }
+		// if (parsedResponse) {
+		// 	this.setState({
+		// 	...parsedResponse.data
+		// 	})
 
+		// 	this.props.history.push('/user/' + this.state.id)
 
-		// this.props.history.push('/categories')
-		this.props.history.push('/user/' + this.state.id)
+		// } else {
+		// 	console.log('Incorrect username and/or password');
+		// }
 
 	}
 

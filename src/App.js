@@ -16,7 +16,8 @@ class App extends React.Component {
 
     this.state = {
       username: '',
-      email: ''
+      email: '',
+      id: ''
     }
   }
 
@@ -38,7 +39,7 @@ class App extends React.Component {
         ...parsedResponse.data
       })
 
-      return parsedResponse
+      return parsedResponse.data
 
     } else {
       console.log('Incorrect username and/or password');
@@ -77,19 +78,43 @@ class App extends React.Component {
     }
   }
 
-  getId = () => {
-    return this.state.id
+  getUserInfo = async () => {
+    try {
+      console.log(this.state, '<--- state in getUserInfo');
+      const userInfoResponse = await fetch('http://localhost:8000/user/' + this.state.id, {
+        method: 'GET',
+        credentials: 'include'
+      })
+
+      if (userInfoResponse !== 200) {
+        throw Error('userInfoResponse does not work')
+      }
+
+      const parsedUserInfo = await userInfoResponse.json();
+      console.log(parsedUserInfo, '<--- parsedUserInfo');
+
+      if (parsedUserInfo) {
+        this.setState({
+          ...parsedUserInfo
+        })
+        return parsedUserInfo.data
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
-    console.log(this.state.id, '<--- this.state in app.js');
+    console.log(this.state, '<--- this.state in app.js');
+
     return (
       <main>
         <Switch>
           <Route exact path='/' 
             render={(props) => <SignIn {...props} />} />
           <Route exact path='/user/login' 
-            render={(props) => <Login {...props} login={this.login} id={this.state.id}/>}/>
+            render={(props) => <Login {...props} login={this.login} />}/>
           <Route exact path='/user/register' 
             render={(props) => <Register {...props} register={this.register} />}/>
           <Route exact path='/painpoints' 
@@ -97,9 +122,10 @@ class App extends React.Component {
           <Route exact path='/solution' 
             render={(props) => <SolutionContainer {...props} />}/>
           <Route path='/user/:id' 
-            render={(props) => <Profile {...props} />}/>
+            render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
           <Route exact path='/categories'
             render={(props) => <Category {...props} />}/>
+
         </Switch>
       </main>
     )

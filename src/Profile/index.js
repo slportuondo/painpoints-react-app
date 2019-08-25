@@ -7,6 +7,7 @@ class Profile extends React.Component {
 		this.state = {
 			username: '',
 			fullName: '',
+			id: '',
 			painpoints: [],
 			solutions: []
 			// profile picture
@@ -14,18 +15,7 @@ class Profile extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getUserInfo()
-	}
-
-	getUserInfo = async () => {
-
-		console.log(this.props, '<--- this.props in profile');
-		try {
-			// const userInfoResponse = await fetch('http://localhost:8000/user' + {this.props.id})
-
-		} catch (err) {
-			console.log(err);
-		}
+		this.props.getUserInfo()
 	}
 
 	render() {

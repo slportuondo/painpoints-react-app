@@ -1,5 +1,6 @@
 import React from 'react'
 import CategoryList from '../Category/CategoryList'
+import CreateCategory from '../Category/CreateCategory'
 
 class Category extends React.Component {
 	constructor() {
@@ -37,12 +38,37 @@ class Category extends React.Component {
 		}
 	}
 
+	createCategory = async (data) => {
+		try {
+
+			const createCategoryResponse = await fetch('http://localhost:8000/category/', {
+				method: 'POST',
+				credentials: 'include',
+				body: JSON.stringify(data),
+				headers: {
+					'Content-type': 'application/json'
+				}
+			})
+
+			const createdCategory = await createCategoryResponse.json()
+			console.log(createdCategory, '<--- createdCategory');
+
+			this.setState({
+				categories: [...this.state.categories, createdCategory.data]
+			})
+
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
 	render() {
 		console.log(this.state, '<--- this.state in Category');
 		return (
 			<div>
 				<h1>Categories</h1>
 				<CategoryList categories={this.state.categories}/>
+				<CreateCategory createCategory={this.createCategory}/>
 			</div>
 		)
 	}
