@@ -1,6 +1,6 @@
 import React from 'react'
-import SolutionsList from '../SolutionsList/'
-import CreateSolution from '../Body/CreateSolution'
+import SolutionsList from './SolutionsList/'
+import CreateSolution from './CreateSolution'
 
 
 class SolutionContainer extends React.Component {
@@ -51,7 +51,7 @@ class SolutionContainer extends React.Component {
 			})
 
 			const createdSolutionResponse = await createdSolution.json()
-			console.log(createdSolutionResponse, '<--- createdSolutionResponse');
+
 
 		} catch (err) {
 			console.log(err);

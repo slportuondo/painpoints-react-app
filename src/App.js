@@ -3,8 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
-import PainpointContainer from './PainpointContainer'
-import SolutionContainer from './SolutionContainer'
+import PainpointContainer from './Body/PainpointContainer'
+import SolutionContainer from './Body/SolutionContainer'
 import Profile from './Profile'
 import './App.css';
 

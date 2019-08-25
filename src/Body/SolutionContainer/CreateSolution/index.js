@@ -26,17 +26,17 @@ class CreateSolution extends React.Component {
 			<div>
 				<h2>Create Solution Form</h2>
 				<form onSubmit={this.handleSubmit}>
-					<input 
-						type='text' 
-						name='head' 
-						placeholder='Solution Title' 
+					<input
+						type='text'
+						name='head'
+						placeholder='Solution Title'
 						value= {this.state.head}
 						onChange={this.handleChange}
 					/><br />
-					<textarea 
-						type='text' 
-						name='body' 
-						placeholder='Solution Description' 
+					<textarea
+						type='text'
+						name='body'
+						placeholder='Solution Description'
 						value= {this.state.body}
 						onChange={this.handleChange}
 					/><br />
