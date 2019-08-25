@@ -53,6 +53,9 @@ class PainpointContainer extends React.Component {
 
 			const parsedResponse = await createPainpointResponse.json();
 
+			this.setState({
+				painpoints: [...this.state.painpoints, parsedResponse.data]
+			})
 
 		} catch (err) {
 			console.log(err)

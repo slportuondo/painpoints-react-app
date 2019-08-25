@@ -52,6 +52,10 @@ class SolutionContainer extends React.Component {
 
 			const createdSolutionResponse = await createdSolution.json()
 
+			this.setState({
+				solutions: [...this.state.solutions, createdSolutionResponse.data]
+			})
+
 
 		} catch (err) {
 			console.log(err);
