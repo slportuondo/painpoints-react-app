@@ -8,7 +8,8 @@ class Login extends React.Component {
 		this.state = {
 			username: '',
 			email: '',
-			password: ''
+			password: '',
+			id: ''
 		}
 	}
 
@@ -16,11 +17,36 @@ class Login extends React.Component {
 		this.setState({[e.target.name]: e.target.value})
 	}
 
-	handleSubmit = (e) => {
+	handleSubmit = async (e) => {
 		e.preventDefault()
 
-		this.props.login(this.state)
-		this.props.history.push('/user/:id')
+		// this.props.login(this.state)
+		  // login = async (data) => {
+	    const loginResponse = await fetch('http://localhost:8000/user/login', {
+	      method: 'POST',
+	      credentials: 'include',
+	      body: JSON.stringify(this.state),
+	      headers: {
+	        'Content-Type': 'application/json'
+	      }
+	    })
+
+	    const parsedResponse = await loginResponse.json();
+	    console.log(parsedResponse, '<---- parsedResponse in login');
+
+	    if (parsedResponse) {
+	      this.setState({
+	        ...parsedResponse.data
+	      })
+
+	      // return parsedResponse
+
+	    } else {
+	      console.log('Incorrect username and/or password');
+	    }
+	  // }
+
+		this.props.history.push(`/user/${this.state.id}`)
 	}
 
 	render() {

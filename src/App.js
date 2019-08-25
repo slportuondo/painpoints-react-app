@@ -1,11 +1,12 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
 import PainpointContainer from './PainpointContainer'
 import SolutionContainer from './SolutionContainer'
 import Profile from './Profile'
+import Category from './Category'
 import './App.css';
 
 
@@ -20,31 +21,30 @@ class App extends React.Component {
     }
   }
 
+  // login = async (data) => {
+  //   const loginResponse = await fetch('http://localhost:8000/user/login', {
+  //     method: 'POST',
+  //     credentials: 'include',
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
 
-  login = async (data) => {
-    const loginResponse = await fetch('http://localhost:8000/user/login', {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+  //   const parsedResponse = await loginResponse.json();
+  //   console.log(parsedResponse, '<---- parsedResponse in login');
 
-    const parsedResponse = await loginResponse.json();
-    console.log(parsedResponse, '<---- parsedResponse in login');
+  //   if (parsedResponse) {
+  //     this.setState({
+  //       ...parsedResponse.data
+  //     })
 
-    if (parsedResponse) {
-      this.setState({
-        ...parsedResponse.data
-      })
+  //     return parsedResponse
 
-      return parsedResponse
-
-    } else {
-      console.log('Incorrect username and/or password');
-    }
-  }
+  //   } else {
+  //     console.log('Incorrect username and/or password');
+  //   }
+  // }
 
 
   register = async (data) => {
@@ -83,12 +83,20 @@ class App extends React.Component {
     return (
       <main>
         <Switch>
-          <Route exact path='/' render={(props) => <SignIn {...props} />} />
-          <Route exact path='/user/login' render={(props) => <Login {...props} login={this.login} />}/>
-          <Route exact path='/user/register' render={(props) => <Register {...props} register={this.register} />}/>
-          <Route exact path='/painpoints' render={(props) => <PainpointContainer {...props} />}/>
-          <Route exact path='/solution' render={(props) => <SolutionContainer {...props} />}/>
-          <Route exact path='/user/:id' render={(props) => <Profile {...props} id={this.state.id}/>}/>
+          <Route exact path='/' 
+            render={(props) => <SignIn {...props} />} />
+          <Route exact path='/user/login' 
+            render={(props) => <Login {...props} login={this.login}/>}/>
+          <Route exact path='/user/register' 
+            render={(props) => <Register {...props} register={this.register} />}/>
+          <Route exact path='/painpoints' 
+            render={(props) => <PainpointContainer {...props} />}/>
+          <Route exact path='/solution' 
+            render={(props) => <SolutionContainer {...props} />}/>
+          <Route path='/user/:id' 
+            render={(props) => <Profile {...props} />}/>
+          <Route exact path='/categories'
+            render={(props) => <Category {...props} />}/>
         </Switch>
       </main>
     )
