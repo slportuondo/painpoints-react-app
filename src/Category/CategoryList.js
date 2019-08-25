@@ -7,14 +7,14 @@ const CategoryList = (props) => {
 
 	const listOfCategories = props.categories.map((category, i) => {
 		return (
-			<li key={i}>{category.category}</li>
+			<button onClick={props.selectCategory.bind(null, category.id)} key={i}>{category.category}</button>
 		)
 	})
 
 	return(
-		<ul>
+		<div>
 			{listOfCategories}
-		</ul>
+		</div>
 	)
 }
 

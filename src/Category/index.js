@@ -7,7 +7,8 @@ class Category extends React.Component {
 		super()
 
 		this.state = {
-			categories: []
+			categories: [],
+			categoriesSelected: []
 		}
 	}
 
@@ -36,6 +37,36 @@ class Category extends React.Component {
 		} catch (err) {
 			console.log(err);
 		}
+	}
+
+	selectCategory = async (categoryId, e) => {
+		console.log(categoryId, '<--- category selected');
+
+		const categoriesResponse = await fetch('http://localhost:8000/category/', {
+			method: 'GET',
+			credentials: 'include'
+		})
+
+		if (categoriesResponse.status !== 200) {
+			throw Error('categoriesResponse is not working')
+		}
+
+		const allCategories = await categoriesResponse.json()
+		console.log(allCategories, '<--- allCategories');
+
+		for (let i = 0; i < allCategories.data.length; i++) {
+			// check if the category selected matches any of the categories in the list
+			if (allCategories.data[i].id === categoryId) {
+
+				this.setState({
+					categoriesSelected: [...this.state.categoriesSelected, allCategories.data[i]]
+				})
+			}
+		}
+
+		this.setState({
+			categories: allCategories.data
+		})
 	}
 
 	createCategory = async (data) => {
@@ -67,7 +98,7 @@ class Category extends React.Component {
 		return (
 			<div>
 				<h1>Categories</h1>
-				<CategoryList categories={this.state.categories}/>
+				<CategoryList categories={this.state.categories} selectCategory={this.selectCategory}/>
 				<CreateCategory createCategory={this.createCategory}/>
 			</div>
 		)
