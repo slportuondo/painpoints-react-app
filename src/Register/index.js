@@ -33,7 +33,7 @@ class Register extends React.Component {
 
 		this.props.register(data);
 
-		this.props.history.push('/main')
+		this.props.history.push('/user/:id')
 	}
 
 	render() {
