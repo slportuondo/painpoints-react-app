@@ -20,15 +20,11 @@ const PainpointList = (props) => {
 	})
 
 
-
-
-
 	return (
 		<div>
 			<h3>List of Painpoints</h3>
 			<ul>{allPainpoints}</ul>
 		</div>
-
 	)
 }
 

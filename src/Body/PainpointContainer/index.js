@@ -42,8 +42,6 @@ class PainpointContainer extends React.Component {
 
 	addPainpoint = async (data) => {
 		try {
-			console.log('RIGHT BEFORE REQUEST');
-			console.log(data);
 			const createPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
 				method: 'POST',
 				credentials: 'include',
@@ -60,6 +58,8 @@ class PainpointContainer extends React.Component {
 			console.log(err)
 		}
 	}
+
+
 
 	render() {
 		return (
