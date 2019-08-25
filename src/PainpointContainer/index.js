@@ -1,6 +1,6 @@
 import React from 'react'
 import PainpointList from '../PainpointList'
-
+import CreatePainpoint from '../Body/CreatePainpoint'
 
 class PainpointContainer extends React.Component {
 	constructor() {
@@ -16,7 +16,7 @@ class PainpointContainer extends React.Component {
 	}
 
 	getPainpoint = async () => {
-		
+
 		try {
 			console.log("getPainpoint is working");
 			const getPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
@@ -43,7 +43,10 @@ class PainpointContainer extends React.Component {
 	render() {
 		console.log(this.state, '<--- this.state in PainpointList');
 		return (
-			<PainpointList painpoints={this.state.painpoints}/>
+			<div>
+				<CreatePainpoint />
+				<PainpointList painpoints={this.state.painpoints}/>
+			</div>
 		)
 	}
 }

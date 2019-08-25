@@ -1,6 +1,6 @@
 import React from 'react'
 import SolutionsList from '../SolutionsList/'
-import CreateSolution from '../SolutionBody/CreateSolution'
+import CreateSolution from '../Body/CreateSolution'
 
 
 class SolutionContainer extends React.Component {

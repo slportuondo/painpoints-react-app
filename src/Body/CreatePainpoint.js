@@ -25,33 +25,43 @@ class CreatePainpoint extends Component {
     data.append('body', this.state.body);
     data.append('attachment', this.state.attachment);
 
-    console.log(data.entries(), '--DATA SUBMITTED FROM CREATE PAINPOINT--')
-
-    for (let pair of data.entries()){
-      console.log(pair[0]  ,', ', pair[1])
-    }
-
-    const registerCall = this.props.register(data);
-
-    registerCall.then((data) => {
-        if(data.status.message === "Success"){
-          this.props.history.push('/profile')
-        } else {
-          console.log(data, '<-- ERROR!!')
+    try {
+      const createPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
+        method: 'POST',
+        credentials: 'include',
+        body: data,
+        headers: {
+          'Content-Type': 'application/json'
         }
-    })
+      })
+
+      const parsedResponse = await createPainpointResponse.json();
+
+      if (parsedResponse) {
+        this.setState({
+          ...parsedResponse.data,
+        })
+      console.log(parsedResponse);
+      return parsedResponse
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
-
+    console.log('CREATE PAIIIIIIINPONTS');
     return(
-      <form onSubmit={this.handleSubmit}>
-        <input type='text' name='head' placeholder='Painpoint name' onChange={this.handleChange} />
-        <input type="text" name='body' placeholder='Painpoint description'  onChange={this.handleChange} />
-        <button type='Submit'> Submit </button>
-      </form>
+      <div>
+        <h1>Create a Painpoint</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' name='head' placeholder='Painpoint name' onChange={this.handleChange} />
+          <input type="text" name='body' placeholder='Painpoint description'  onChange={this.handleChange} />
+          <button type='Submit'> Submit </button>
+        </form>
+      </div>
     )
   }
 }
 
-export default CreateTile
+export default CreatePainpoint
