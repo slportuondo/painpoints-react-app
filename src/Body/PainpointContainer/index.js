@@ -1,6 +1,6 @@
 import React from 'react'
-import PainpointList from '../PainpointList'
-
+import PainpointList from './PainpointList'
+import CreatePainpoint from './CreatePainpoint'
 
 class PainpointContainer extends React.Component {
 	constructor() {
@@ -16,7 +16,7 @@ class PainpointContainer extends React.Component {
 	}
 
 	getPainpoint = async () => {
-		
+
 		try {
 			console.log("getPainpoint is working");
 			const getPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
@@ -40,10 +40,33 @@ class PainpointContainer extends React.Component {
 		}
 	}
 
+	addPainpoint = async (data) => {
+		try {
+			const createPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
+				method: 'POST',
+				credentials: 'include',
+				body: JSON.stringify(data),
+				headers: {
+					'enctype': 'multipart/form-data'
+				}
+			})
+
+			const parsedResponse = await createPainpointResponse.json();
+
+
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+
+
 	render() {
-		console.log(this.state, '<--- this.state in PainpointList');
 		return (
-			<PainpointList painpoints={this.state.painpoints}/>
+			<div>
+				<CreatePainpoint addPainpoint={this.addPainpoint}/>
+				<PainpointList painpoints={this.state.painpoints}/>
+			</div>
 		)
 	}
 }
