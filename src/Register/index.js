@@ -9,7 +9,8 @@ class Register extends React.Component {
 			fullName: '',
 			username: '',
 			email: '',
-			password: ''
+			password: '',
+			id: ''
 		}
 	}
 
@@ -17,7 +18,7 @@ class Register extends React.Component {
 		this.setState({[e.target.name]: e.target.value})
 	}
 
-	handleSubmit = (e) => {
+	handleSubmit = async (e) => {
 		e.preventDefault()
 
 		const data = new FormData();
@@ -31,9 +32,38 @@ class Register extends React.Component {
 			console.log(pair[0] ,', ', pair[1]);
 		}
 
-		this.props.register(data);
+		// this.props.register(data);
 
-		this.props.history.push('/categories')
+		// this.props.history.push('/categories')
+		try {
+	      const registerResponse = await fetch('http://localhost:8000/user/register', {
+	        method: 'POST',
+	        credentials: 'include',
+	        body: data,
+	        headers: {
+	          'enctype': 'multipart/form-data'
+	        }
+	      })
+
+	      const parsedResponse = await registerResponse.json();
+	      console.log(parsedResponse, '<--- parsedResponse in register');
+
+	      if (parsedResponse) {
+	        this.setState({
+	          ...parsedResponse.data
+	        })
+		    this.props.history.push('/user/' + this.state.id)
+
+	        // return parsedResponse
+
+	      } else {
+	        console.log('There was an error registering for an account');
+	      }
+
+	    } catch (err) {
+	      console.log(err)
+	    }
+
 	}
 
 	render() {

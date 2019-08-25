@@ -7,7 +7,7 @@ const CategoryList = (props) => {
 
 	const listOfCategories = props.categories.map((category, i) => {
 		return (
-			<li key={i}>{category.category}</li>
+			<button key={i}>{category.category}</button>
 		)
 	})
 

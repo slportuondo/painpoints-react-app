@@ -16,8 +16,7 @@ class App extends React.Component {
 
     this.state = {
       username: '',
-      email: '',
-      id: ''
+      email: ''
     }
   }
 
@@ -78,15 +77,19 @@ class App extends React.Component {
     }
   }
 
+  getId = () => {
+    return this.state.id
+  }
+
   render() {
-    console.log(this.state, '<--- this.state in app.js');
+    console.log(this.state.id, '<--- this.state in app.js');
     return (
       <main>
         <Switch>
           <Route exact path='/' 
             render={(props) => <SignIn {...props} />} />
           <Route exact path='/user/login' 
-            render={(props) => <Login {...props} login={this.login}/>}/>
+            render={(props) => <Login {...props} login={this.login} id={this.state.id}/>}/>
           <Route exact path='/user/register' 
             render={(props) => <Register {...props} register={this.register} />}/>
           <Route exact path='/painpoints' 
