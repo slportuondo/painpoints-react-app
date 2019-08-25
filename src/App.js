@@ -21,30 +21,30 @@ class App extends React.Component {
     }
   }
 
-  // login = async (data) => {
-  //   const loginResponse = await fetch('http://localhost:8000/user/login', {
-  //     method: 'POST',
-  //     credentials: 'include',
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
+  login = async (data) => {
+    const loginResponse = await fetch('http://localhost:8000/user/login', {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
 
-  //   const parsedResponse = await loginResponse.json();
-  //   console.log(parsedResponse, '<---- parsedResponse in login');
+    const parsedResponse = await loginResponse.json();
+    console.log(parsedResponse, '<---- parsedResponse in login');
 
-  //   if (parsedResponse) {
-  //     this.setState({
-  //       ...parsedResponse.data
-  //     })
+    if (parsedResponse) {
+      this.setState({
+        ...parsedResponse.data
+      })
 
-  //     return parsedResponse
+      return parsedResponse
 
-  //   } else {
-  //     console.log('Incorrect username and/or password');
-  //   }
-  // }
+    } else {
+      console.log('Incorrect username and/or password');
+    }
+  }
 
 
   register = async (data) => {
