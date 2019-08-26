@@ -3,7 +3,8 @@ import React from 'react'
 
 const SolutionsList = (props) => {
 
-	const allSolutions = props.solutions.filter(sol => sol.painpoint.id === 1)
+	console.log(props, '<---- props in SolutionsList');
+	const allSolutions = props.solutions.filter(sol => sol.painpoint.id === parseInt(props.painpointId))
 		.map((solution, i) => {
 			return(
 				<li key={i}>
@@ -16,7 +17,7 @@ const SolutionsList = (props) => {
 
 	return (
 		<div>
-			<h1>Solutions List</h1>
+			<h2>Solutions List</h2>
 			<ul>{allSolutions}</ul>	
 		</div>
 	)

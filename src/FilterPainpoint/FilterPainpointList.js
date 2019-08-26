@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const FilterPainpointList = (props) => {
 	console.log(props, '<--- props');
@@ -6,7 +7,7 @@ const FilterPainpointList = (props) => {
 	const filteredPainpoints = props.painpoints.map((painpoint, i) => {
 		return(
 			<div key={i}>
-				<div>{painpoint.painpoint.head}</div>
+				<div><Link to={'/painpoint/' + painpoint.painpoint.id}>{painpoint.painpoint.head}</Link></div>
 				<div>{painpoint.painpoint.body}</div>
 				<div>{painpoint.painpoint.attachment}</div>
 				<div>{painpoint.category.category}</div><br />	
