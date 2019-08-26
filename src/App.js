@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
@@ -35,8 +35,13 @@ class App extends React.Component {
       }
     })
 
+    if (loginResponse !== 200) {
+      const { history } = this.props
+      if (history) history.push('/user/login')
+    }
+
     const parsedResponse = await loginResponse.json();
-    console.log(parsedResponse, '<---- parsedResponse in login');
+    // console.log(parsedResponse, '<---- parsedResponse in login');
 
     if (parsedResponse) {
       this.setState({
@@ -71,7 +76,7 @@ class App extends React.Component {
 
 
   register = async (data) => {
-    console.log(data, '<--- data in register in App.js');
+    // console.log(data, '<--- data in register in App.js');
     try {
       const registerResponse = await fetch('http://localhost:8000/user/register', {
         method: 'POST',
@@ -83,7 +88,7 @@ class App extends React.Component {
       })
 
       const parsedResponse = await registerResponse.json();
-      console.log(parsedResponse, '<--- parsedResponse in register');
+      // console.log(parsedResponse, '<--- parsedResponse in register');
 
       if (parsedResponse) {
         this.setState({
@@ -99,34 +104,6 @@ class App extends React.Component {
 
     } catch (err) {
       console.log(err)
-    }
-  }
-
-  getUserInfo = async () => {
-    try {
-      console.log(this.state, '<--- state in getUserInfo');
-      const userInfoResponse = await fetch('http://localhost:8000/user/' + this.state.id, {
-        method: 'GET',
-        credentials: 'include'
-      })
-      console.log(userInfoResponse, '<--- userInfoResponse');
-
-      if (userInfoResponse.status !== 200) {
-        throw Error('userInfoResponse does not work')
-      }
-
-      const parsedUserInfo = await userInfoResponse.json();
-      console.log(parsedUserInfo, '<--- parsedUserInfo');
-
-      if (parsedUserInfo) {
-        this.setState({
-          ...parsedUserInfo
-        })
-        return parsedUserInfo.data
-      }
-
-    } catch (err) {
-      console.log(err);
     }
   }
 
@@ -171,4 +148,4 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default withRouter(App);
