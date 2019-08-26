@@ -66,7 +66,7 @@ class Category extends React.Component {
 			return
 		}
 
-		if (selectedCats.length > 0) {
+		if (selectedCats.length > 0 && selectedCats.length < 3) {
 			console.log(selectedCats, '<--- if there is at least one category in selected');
 
 			for (let i = 0; i < selectedCats.length; i++) {
