@@ -64,7 +64,6 @@ class PainpointContainer extends React.Component {
 
 		try {
 
-			console.log('THIS.STATE ARRAY IN THE MAIN INDEX: ', this.state);
 			const createPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
 				method: 'POST',
 				credentials: 'include',
@@ -75,7 +74,6 @@ class PainpointContainer extends React.Component {
 			})
 
 			const createdPainpoint = await createPainpointResponse.json()
-			console.log(createdPainpoint, '<--- createdPainpoint');
 
 			const painpointFormattedForState = {
 				'painpoint': createdPainpoint.data,
