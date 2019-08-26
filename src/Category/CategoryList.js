@@ -16,10 +16,18 @@ const CategoryList = (props) => {
 		)
 	})
 
+	const filteredCategories = props.categoriesSelected.map((filteredCategory, i) => {
+		return (
+			<div key={i}>{filteredCategory.category}</div>
+		)
+	})
+
 	return(
 		<div>
 			{listOfCategories}
-			<button>Search</button>
+			<h3>Filter by:</h3>
+			{filteredCategories}<br />
+			<button onClick={props.filterSearch}>Search</button>
 		</div>
 	)
 }

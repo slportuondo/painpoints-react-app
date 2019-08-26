@@ -28,7 +28,7 @@ class Category extends React.Component {
 			}
 
 			const allCategories = await categoriesResponse.json()
-			// console.log(allCategories, '<--- allCategories');
+			console.log(allCategories, '<--- allCategories');
 
 			this.setState({
 				categories: allCategories.data
@@ -40,6 +40,7 @@ class Category extends React.Component {
 	}
 
 	selectCategory = async (category, e) => {
+		e.preventDefault()
 		console.log(this.state, '<---- this.state in select category');
 
 		console.log(category, '<--- category selected');
@@ -82,21 +83,27 @@ class Category extends React.Component {
 					return
 				}
 			}
+			if (selectedCats.length < 3) {
+				for (let i = 0; i < allCategories.data.length; i++) {
+					// check if the category selected matches any of the categories in the list
+					if (allCategories.data[i].id === category.id) {
 
-			for (let i = 0; i < allCategories.data.length; i++) {
-				// check if the category selected matches any of the categories in the list
-				if (allCategories.data[i].id === category.id) {
+						// check all categories that were already selected and see if they already match the chosen category. if it does, then remove it
 
-					// check all categories that were already selected and see if they already match the chosen category. if it does, then remove it
+						this.setState({
+							categoriesSelected: [...this.state.categoriesSelected, allCategories.data[i]]
+						})
 
-					this.setState({
-						categoriesSelected: [...this.state.categoriesSelected, allCategories.data[i]]
-					})
-
-					return
+						return
+					}
 				}
 			}
 		}
+	}
+
+	filterSearch = (e) => {
+		this.props.getFilter(this.state.categoriesSelected)
+		this.props.history.push('/painpoints/filter')
 	}
 
 
@@ -128,8 +135,13 @@ class Category extends React.Component {
 		console.log(this.state, '<--- this.state in Category in render');
 		return (
 			<div>
-				<h1>All Categories</h1>
-				<CategoryList categories={this.state.categories} selectCategory={this.selectCategory}/>
+				<h1>Categories</h1>
+				<CategoryList
+					categories={this.state.categories}
+					selectCategory={this.selectCategory}
+					filterSearch={this.filterSearch}
+					categoriesSelected={this.state.categoriesSelected}
+				/><br />
 				<CreateCategory createCategory={this.createCategory}/>
 			</div>
 		)
