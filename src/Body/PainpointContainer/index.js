@@ -1,6 +1,7 @@
 import React from 'react'
 import PainpointList from './PainpointList'
 import CreatePainpoint from './CreatePainpoint'
+import EditPainpoint from './EditPainpoint'
 
 class PainpointContainer extends React.Component {
 	constructor() {
@@ -69,12 +70,36 @@ class PainpointContainer extends React.Component {
 	}
 
 
+	editPainpoint = async (data) => {
+		try {
+			const editedPainpoint = await fetch('http://localhost:8000/painpoints/', {
+				method: 'PUT',
+				credentials: 'include',
+				body: data,
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+
+			const parsedResponse = editedPainpoint.json()
+			console.log(parsedResponse);
+
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	setPainpointToEdit = (painpoint) => {
+		return(
+			<EditPainpoint painpoint={painpoint} editPainpoint={this.editPainpoint}/>
+		)
+	}
 
 	render() {
 		return (
 			<div>
 				<CreatePainpoint addPainpoint={this.addPainpoint}/>
-				<PainpointList painpoints={this.state.painpoints}/>
+				<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit}/>
 			</div>
 		)
 	}

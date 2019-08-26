@@ -46,7 +46,7 @@ class SolutionContainer extends React.Component {
 				credentials: 'include',
 				body: JSON.stringify(data),
 				headers: {
-					'enctype': 'multipart/form-data'
+					'Content-type': 'application/json'
 				}
 			})
 

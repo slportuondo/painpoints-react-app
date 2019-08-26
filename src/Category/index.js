@@ -128,7 +128,7 @@ class Category extends React.Component {
 		console.log(this.state, '<--- this.state in Category in render');
 		return (
 			<div>
-				<h1>Categories</h1>
+				<h1>All Categories</h1>
 				<CategoryList categories={this.state.categories} selectCategory={this.selectCategory}/>
 				<CreateCategory createCategory={this.createCategory}/>
 			</div>
