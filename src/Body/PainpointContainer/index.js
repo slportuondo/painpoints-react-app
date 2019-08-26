@@ -8,8 +8,10 @@ class PainpointContainer extends React.Component {
 		super()
 
 		this.state = {
-			painpoints: []
+			painpoints: [],
+			painpointToEdit: -1
 		}
+
 	}
 
 	componentDidMount() {
@@ -70,35 +72,53 @@ class PainpointContainer extends React.Component {
 	}
 
 
-	editPainpoint = async (data) => {
+	updatePainpoint = async (data, idOfPainpointToUpdate) => {
+		console.log(data, 'DATA');
 		try {
-			const editedPainpoint = await fetch('http://localhost:8000/painpoints/', {
+			const url = 'http://localhost:8000/painpoints/' + idOfPainpointToUpdate
+			const editedPainpoint = await fetch(url, {
 				method: 'PUT',
 				credentials: 'include',
-				body: data,
+				body: JSON.stringify(data),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
 
-			const parsedResponse = editedPainpoint.json()
+			const parsedResponse = await editedPainpoint.json()
 			console.log(parsedResponse);
+			this.getPainpoints()
 
 		} catch (err) {
 			console.log(err);
 		}
 	}
 
-	setPainpointToEdit = (painpoint) => {
-		return(
-			<EditPainpoint painpoint={painpoint} editPainpoint={this.editPainpoint}/>
-		)
+	setPainpointToEdit = (indexOfPainpointToEdit) => {
+		console.log(indexOfPainpointToEdit)
+		this.setState({
+			painpointToEdit: indexOfPainpointToEdit
+		})
+		// return(
+		// 	<EditPainpoint painpoint={painpoint} editPainpoint={this.editPainpoint}/>
+		// )
 	}
 
 	render() {
+		console.log("this.state.painpointToEdit in render() in PainpointContainer:")
+		console.log(this.state.painpointToEdit);
 		return (
 			<div>
 				<CreatePainpoint addPainpoint={this.addPainpoint}/>
+				{
+					this.state.painpointToEdit === -1
+					?
+					null
+					:
+					<EditPainpoint
+						painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  updatePainpoint={this.updatePainpoint}
+					/>
+				}
 				<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit}/>
 			</div>
 		)
