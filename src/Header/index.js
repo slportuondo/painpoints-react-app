@@ -21,9 +21,22 @@ class Header extends React.Component {
 		if (history) history.push('/user/login')
 	}
 
+	goToCategories = (e) => {
+		e.preventDefault()
+
+		const { history } = this.props
+		if (history) history.push('/categories')
+	}
+
+	goHome = (e) => {
+		e.preventDefault()
+
+		const { history } = this.props
+		if (history) history.push('/painpoints')
+	}
+
 
 	render() {	
-		// const { history } = this.props
 		return (
 			<div>
 				<div 
@@ -32,7 +45,9 @@ class Header extends React.Component {
 						width: 100,
 						height: 100,
 						display: 'inline-block'
-					}}>
+					}}
+
+					>
 					Profile
 				</div>
 				<div 
@@ -42,6 +57,7 @@ class Header extends React.Component {
 						height: 100,
 						display: 'inline-block'
 					}}
+					onClick={this.goHome}
 					>
 					Home
 				</div>
@@ -51,7 +67,9 @@ class Header extends React.Component {
 						width: 100,
 						height: 100,
 						display: 'inline-block'
-					}}>
+					}}
+					onClick={this.goToCategories}
+					>
 					Industries
 				</div>
 				<button onClick={this.handleLogout}>Logout</button>

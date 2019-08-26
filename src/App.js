@@ -9,7 +9,6 @@ import SolutionContainer from './Body/SolutionContainer'
 import Profile from './Profile'
 import Category from './Category'
 import Header from './Header'
-// import { createBrowserHistory } from 'history';
 import './App.css';
 
 
