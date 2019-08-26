@@ -1,6 +1,6 @@
 import React from 'react'
 // import EditPainpoint from '../EditPainpoint'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const PainpointList = (props) => {
 
@@ -9,8 +9,8 @@ const PainpointList = (props) => {
 
 		return (
 			<div key={i}>
-				<li >
-						<h2>{ppc.painpoint.head}</h2>
+				<li>
+						<h2><Link to={`/painpoint/${ppc.painpoint.id}`}>{ppc.painpoint.head}</Link></h2>
 						<h3>{ppc.painpoint.body}</h3>
 						<h3>{ppc.painpoint.attachment}</h3>
 						<button onClick={

@@ -1,5 +1,5 @@
 // import React from 'react'
-//
+
 // class ShowPainpoint extends React.Component {
 //   constructor(props){
 //     super(props)
@@ -9,14 +9,16 @@
 //       attachment: this.props.attachment
 //     }
 //   }
-//
-//
-//
+
+
+
 //   render(){
 //     return(
 //       <div>
-//
+//       	<h1>Painpoint Show Page</h1>
 //       </div>
 //     )
 //   }
 // }
+
+// export default ShowPainpoint

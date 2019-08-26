@@ -27,6 +27,8 @@ class SolutionContainer extends React.Component {
 				throw Error('getSolutionsResponse is not working')
 			}
 
+			console.log(this.props.match.params.id, '<--- params');
+
 			const solutionsResponse = await getSolutionsResponse.json()
 			console.log(solutionsResponse, '<--- solutionsResponse');
 
@@ -65,8 +67,8 @@ class SolutionContainer extends React.Component {
 	render() {
 		return (
 			<main>
-				<CreateSolution addSolution={this.addSolution}/>
-				<SolutionsList solutions={this.state.solutions}/>
+				<CreateSolution addSolution={this.addSolution} painpointId={this.props.match.params.id}/>
+				<SolutionsList solutions={this.state.solutions} painpointId={this.props.match.params.id}/>
 			</main>
 		)
 	}

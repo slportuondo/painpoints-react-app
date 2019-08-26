@@ -6,8 +6,13 @@ class CreateSolution extends React.Component {
 
 		this.state = {
 			head: '',
-			body: ''
+			body: '',
+			painpoint: ''
 		}
+	}
+
+	componentDidMount() {
+		this.setState({painpointId: parseInt(this.props.painpointId)})
 	}
 
 	handleChange = (e) => {
