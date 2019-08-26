@@ -35,8 +35,17 @@ class Header extends React.Component {
 		if (history) history.push('/painpoints')
 	}
 
+	goToProfile = (e) => {
+		e.preventDefault()
+
+		const { history } = this.props
+		if (history) history.push('/user/' + this.props.userId)
+	}
+
 
 	render() {	
+		console.log(this.state, '<---- state in Header');
+		// <button onClick={this.handleLogout}>Logout</button>
 		return (
 			<div>
 				<div 
@@ -46,7 +55,7 @@ class Header extends React.Component {
 						height: 100,
 						display: 'inline-block'
 					}}
-
+					onClick={this.goToProfile}
 					>
 					Profile
 				</div>
@@ -72,7 +81,17 @@ class Header extends React.Component {
 					>
 					Industries
 				</div>
-				<button onClick={this.handleLogout}>Logout</button>
+				<div 
+					style={{
+						backgroundColor: 'beige',
+						width: 100,
+						height: 100,
+						display: 'inline-block'
+					}}
+					onClick={this.handleLogout}
+					>
+					Logout
+				</div>
 			</div>
 		)
 	}

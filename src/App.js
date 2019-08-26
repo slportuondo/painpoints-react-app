@@ -149,7 +149,7 @@ class App extends React.Component {
 
 
           <Route>
-            {this.state.loggedIn ? <Header logout={this.logout}/> : null }
+            {this.state.loggedIn ? <Header logout={this.logout} userId={this.state.id}/> : null }
             <Route path='/user/:id' 
               render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
             <Route exact path='/painpoints' 
