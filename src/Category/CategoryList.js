@@ -26,7 +26,7 @@ const CategoryList = (props) => {
 		<div>
 			{listOfCategories}
 			<h3>Filter by:</h3>
-			{filteredCategories}
+			{filteredCategories}<br />
 			<button onClick={props.filterSearch}>Search</button>
 		</div>
 	)

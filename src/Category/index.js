@@ -28,7 +28,7 @@ class Category extends React.Component {
 			}
 
 			const allCategories = await categoriesResponse.json()
-			// console.log(allCategories, '<--- allCategories');
+			console.log(allCategories, '<--- allCategories');
 
 			this.setState({
 				categories: allCategories.data
@@ -40,6 +40,7 @@ class Category extends React.Component {
 	}
 
 	selectCategory = async (category, e) => {
+		e.preventDefault()
 		console.log(this.state, '<---- this.state in select category');
 
 		console.log(category, '<--- category selected');
@@ -100,8 +101,9 @@ class Category extends React.Component {
 		}
 	}
 
-	filterSearch = () => {
-		
+	filterSearch = (e) => {
+		this.props.getFilter(this.state.categoriesSelected)
+		this.props.history.push('/painpoints/filter')
 	}
 
 
@@ -139,7 +141,7 @@ class Category extends React.Component {
 					selectCategory={this.selectCategory}
 					filterSearch={this.filterSearch}
 					categoriesSelected={this.state.categoriesSelected}
-				/>
+				/><br />
 				<CreateCategory createCategory={this.createCategory}/>
 			</div>
 		)

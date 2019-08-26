@@ -4,6 +4,7 @@ import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
 import PainpointContainer from './Body/PainpointContainer'
+import FilterPainpoint from './FilterPainpoint'
 import SolutionContainer from './Body/SolutionContainer'
 import Profile from './Profile'
 import Category from './Category'
@@ -17,7 +18,8 @@ class App extends React.Component {
     this.state = {
       username: '',
       email: '',
-      id: ''
+      id: '',
+      filter: []
     }
   }
 
@@ -118,6 +120,10 @@ class App extends React.Component {
     }
   }
 
+  getFilter = (filteredCategories) => {
+    this.setState({filter: [...filteredCategories]})
+  }
+
   render() {
     console.log(this.state, '<--- this.state in app.js');
 
@@ -137,8 +143,9 @@ class App extends React.Component {
           <Route path='/user/:id' 
             render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
           <Route exact path='/categories'
-            render={(props) => <Category {...props} />}/>
-
+            render={(props) => <Category {...props} getFilter={this.getFilter} />}/>
+          <Route exact path='/painpoints/filter'
+            render={(props) => <FilterPainpoint {...props} filter={this.state.filter} />} />
         </Switch>
       </main>
     )
