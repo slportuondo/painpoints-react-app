@@ -8,14 +8,15 @@ const PainpointList = (props) => {
 		console.log(eachCategory, 'eachCategory');
 
 		return (
-			<li key={i}>
-				<div>
-					<h2>{ppc.painpoint.head}</h2>
-					<h3>{ppc.painpoint.body}</h3>
-					<h3>{ppc.painpoint.attachment}</h3>
-				</div>
-				<ul>{eachCategory}</ul>
-			</li>
+			<div>
+				<li key={i}>
+						<h2>{ppc.painpoint.head}</h2>
+						<h3>{ppc.painpoint.body}</h3>
+						<h3>{ppc.painpoint.attachment}</h3>
+					<ul>{eachCategory}</ul>
+				</li>
+			</div>
+
 		)
 	})
 
