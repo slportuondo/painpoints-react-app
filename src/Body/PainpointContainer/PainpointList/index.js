@@ -4,19 +4,18 @@ import React from 'react'
 const PainpointList = (props) => {
 
 	const allPainpoints = props.painpoints.map((ppc, i) => {
-		let eachCategory = ppc.categories.map((cat, i) => <li key={i}>{cat.category}</li>)
+		let eachCategory = ppc.categories.map((cat, i) => <li key={cat.id}>{cat.category}</li>)
 		console.log(eachCategory, 'eachCategory');
 
 		return (
 			<div>
-				<li key={i}>
+				<li key={ppc.painpoint.id}>
 						<h2>{ppc.painpoint.head}</h2>
 						<h3>{ppc.painpoint.body}</h3>
 						<h3>{ppc.painpoint.attachment}</h3>
 					<ul>{eachCategory}</ul>
 				</li>
 			</div>
-
 		)
 	})
 
