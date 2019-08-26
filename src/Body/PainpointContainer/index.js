@@ -2,14 +2,15 @@ import React from 'react'
 import PainpointList from './PainpointList'
 import CreatePainpoint from './CreatePainpoint'
 import EditPainpoint from './EditPainpoint'
-
+import Category from '../../Category'
 class PainpointContainer extends React.Component {
 	constructor() {
 		super()
 
 		this.state = {
 			painpoints: [],
-			painpointToEdit: -1
+			painpointToEdit: -1,
+			addingCategories: false
 		}
 
 	}
@@ -62,13 +63,13 @@ class PainpointContainer extends React.Component {
 				'categories': []
 			}
 			this.setState({
-				painpoints: [ painpointFormattedForState, ...this.state.painpoints]
+				painpoints: [painpointFormattedForState, ...this.state.painpoints],
+				addingCategories: true
 			})
 
 		} catch (err) {
 			console.log(err);
 		}
-
 	}
 
 	updatePainpoint = async (data, idOfPainpointToUpdate) => {
@@ -83,7 +84,7 @@ class PainpointContainer extends React.Component {
 				}
 			})
 			const parsedResponse = await editedPainpoint.json()
-			console.log(parsedResponse, '<-------- this is parsedResponse');
+
 			const painpointFormattedForState = {
 				'painpoint': {
 					...parsedResponse.data
@@ -111,8 +112,7 @@ class PainpointContainer extends React.Component {
 	}
 
 	destroyPainpoint = async (index, idOfPainpointToDestroy) => {
-		console.log(index, 'INDEX');
-		console.log(idOfPainpointToDestroy, 'idOfPainpointToDestroy');
+
 		try {
 			const url = 'http://localhost:8000/painpoints/' + idOfPainpointToDestroy
 			const deletePainpointResponse = await fetch(url, {
@@ -121,32 +121,28 @@ class PainpointContainer extends React.Component {
 			})
 
 			const parsedResponse = await deletePainpointResponse.json()
-			console.log(parsedResponse); /// look at this and make sure delete worked otherwise you might be lying to your user by removing it from the screen
-
-
 
 			this.setState({
 				painpoints: this.state.painpoints.filter((painpoint, i) => i != index)
 			})
+
 		} catch (err) {
 			console.log(err);
 		}
 	}
 
 	render() {
-		console.log("this.state.painpointToEdit in render() in PainpointContainer:")
-		console.log(this.state.painpointToEdit);
+
 		return (
 			<div>
 				<CreatePainpoint addPainpoint={this.addPainpoint}/>
+				<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit} destroyPainpoint={this.destroyPainpoint}/>
 				{
-					this.state.painpointToEdit === -1
-					?
-					<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit} destroyPainpoint={this.destroyPainpoint}/>
-					:
-					<EditPainpoint
-						painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  updatePainpoint={this.updatePainpoint}
-					/>
+					this.state.addingCategories
+					? <Category painpointID={this.state.painpoints[0].painpoint.id} addingCategories={this.state.addingCategories} />
+					:	(this.state.painpointToEdit === -1)
+						? null
+						: <EditPainpoint painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  updatePainpoint={this.updatePainpoint} />
 				}
 			</div>
 		)

@@ -4,7 +4,6 @@ import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
 import PainpointContainer from './Body/PainpointContainer'
-import ShowPainpoint from './Body/PainpointContainer/ShowPainpoint'
 import FilterPainpoint from './FilterPainpoint'
 import SolutionContainer from './Body/SolutionContainer'
 import Profile from './Profile'
@@ -49,20 +48,6 @@ class App extends React.Component {
       console.log('Incorrect username and/or password');
     }
   }
-
-  // logout = async () => {
-  //   const logoutResponse = await fetch('http://localhost:8000/user/logout', {
-  //     method: 'POST',
-  //     credentials: 'include'
-  //   })
-
-  //   this.setState({
-  //     username: '',
-  //     email: '',
-  //     id: ''
-  //   })
-  // }
-
 
   register = async (data) => {
     console.log(data, '<--- data in register in App.js');
@@ -132,20 +117,20 @@ class App extends React.Component {
     return (
       <main>
         <Switch>
-          <Route exact path='/' 
+          <Route exact path='/'
             render={(props) => <SignIn {...props} />} />
-          <Route exact path='/user/login' 
+          <Route exact path='/user/login'
             render={(props) => <Login {...props} login={this.login} />}/>
           <Route exact path='/user/register'
             render={(props) => <Register {...props} register={this.register} />}/>
         </Switch>
         <Switch>
-          <Header />
-          <Route exact path='/painpoints' 
+
+          <Route exact path='/painpoints'
             render={(props) => <PainpointContainer {...props} />}/>
-          <Route exact path='/painpoint/:id' 
+          <Route exact path='/painpoint/:id'
             render={(props) => <SolutionContainer {...props} />}/>
-          <Route path='/user/:id' 
+          <Route path='/user/:id'
             render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
           <Route exact path='/categories'
             render={(props) => <Category {...props} getFilter={this.getFilter} />}/>
