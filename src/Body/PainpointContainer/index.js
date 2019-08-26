@@ -41,26 +41,54 @@ class PainpointContainer extends React.Component {
 	}
 
 	addPainpoint = async (data) => {
+		// try {
+		// 	const createPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
+		// 		method: 'POST',
+		// 		credentials: 'include',
+		// 		body: JSON.stringify(data),
+		// 		headers: {
+		// 			'enctype': 'multipart/form-data'
+		// 		}
+		// 	})
+		//
+		// 	const parsedResponse = await createPainpointResponse.json();
+		//
+		// 	this.setState({
+		// 		painpoints: [...this.state.painpoints, parsedResponse.data]
+		// 	})
+		//
+		// 	this.getPainpoints()
+		// } catch (err) {
+		// 	console.log(err)
+		// }
+
 		try {
+
+			console.log('THIS.STATE ARRAY IN THE MAIN INDEX: ', this.state);
 			const createPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(data),
 				headers: {
-					'enctype': 'multipart/form-data'
+					'Content-type': 'application/json'
 				}
 			})
 
-			const parsedResponse = await createPainpointResponse.json();
+			const createdPainpoint = await createPainpointResponse.json()
+			console.log(createdPainpoint, '<--- createdPainpoint');
 
+			const painpointFormattedForState = {
+				'painpoint': createdPainpoint.data,
+				'categories': []
+			}
 			this.setState({
-				painpoints: [...this.state.painpoints, parsedResponse.data]
+				painpoints: [...this.state.painpoints, painpointFormattedForState]
 			})
 
-			this.getPainpoints()
 		} catch (err) {
-			console.log(err)
+			console.log(err);
 		}
+
 	}
 
 

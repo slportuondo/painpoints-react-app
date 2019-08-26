@@ -28,10 +28,6 @@ class Register extends React.Component {
 		data.append("email", this.state.email);
 		data.append("password", this.state.password);
 
-		for (let pair of data.entries()){
-			console.log(pair[0] ,', ', pair[1]);
-		}
-
 		this.props.register(data);
 
 		this.props.history.push('/categories')
@@ -75,31 +71,31 @@ class Register extends React.Component {
 			<div>
 				<h2>Register Page</h2>
 				<form onSubmit={this.handleSubmit}>
-					<input 
-						type='text' 
-						name='fullName' 
-						placeholder='Full name' 
+					<input
+						type='text'
+						name='fullName'
+						placeholder='Full name'
 						value={this.state.fullName}
-						onChange={this.handleChange} 
+						onChange={this.handleChange}
 					/><br />
-					<input 
-						type='text' 
-						name='username' 
-						placeholder='Pick a username' 
+					<input
+						type='text'
+						name='username'
+						placeholder='Pick a username'
 						value={this.state.username}
 						onChange={this.handleChange}
 					/><br />
-					<input 
-						type='text' 
-						name='email' 
-						placeholder='e.g. example@email.com' 
+					<input
+						type='text'
+						name='email'
+						placeholder='e.g. example@email.com'
 						value={this.state.email}
 						onChange={this.handleChange}
 					/><br />
-					<input 
-						type='password' 
-						name='password' 
-						placeholder='Password' 
+					<input
+						type='password'
+						name='password'
+						placeholder='Password'
 						value={this.state.password}
 						onChange={this.handleChange}
 					/>
@@ -117,6 +113,3 @@ class Register extends React.Component {
 
 
 export default Register;
-
-
-
