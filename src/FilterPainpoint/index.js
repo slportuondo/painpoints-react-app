@@ -33,10 +33,24 @@ class FilterPainpoint extends React.Component {
 				throw Error('getPainpointsResponse is not running')
 			}
 
+
 			const allPainpoints = await getPainpointsResponse.json()
 			console.log(allPainpoints.data, '<--- allPainpoints');
 
-			const filteredPainpoints = allPainpoints.data.filter(pp => pp.category.id === this.state.filter[0].id)
+			let occ = {};
+			const filteredPainpoints = allPainpoints.data.filter((pp) => {
+				for (let i = 0; i < this.state.filter.length; i++) {
+					if (pp.category.id === this.state.filter[i].id) {
+						return true
+					}
+				}
+			}) 
+			.forEach(pp => {
+			    occ[pp.painpoint.id] = (occ[pp.painpoint.id] || 0) + 1;
+			})
+
+			console.log(occ, '<--- occ');
+
 
 			this.setState({
 				painpoints: [...filteredPainpoints]
