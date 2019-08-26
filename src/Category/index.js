@@ -136,8 +136,8 @@ class Category extends React.Component {
 		return (
 			<div>
 				<h1>Categories</h1>
-				<CategoryList 
-					categories={this.state.categories} 
+				<CategoryList
+					categories={this.state.categories}
 					selectCategory={this.selectCategory}
 					filterSearch={this.filterSearch}
 					categoriesSelected={this.state.categoriesSelected}
