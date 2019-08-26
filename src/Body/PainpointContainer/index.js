@@ -32,7 +32,6 @@ class PainpointContainer extends React.Component {
 			}
 
 			const painpointsResponse = await getPainpointsResponse.json()
-			console.log(painpointsResponse, '<--- painpointsResponse');
 
 			this.setState({
 				painpoints: painpointsResponse.data
@@ -63,7 +62,7 @@ class PainpointContainer extends React.Component {
 				'categories': []
 			}
 			this.setState({
-				painpoints: [...this.state.painpoints, painpointFormattedForState]
+				painpoints: [ painpointFormattedForState, ...this.state.painpoints]
 			})
 
 		} catch (err) {
@@ -72,9 +71,7 @@ class PainpointContainer extends React.Component {
 
 	}
 
-
 	updatePainpoint = async (data, idOfPainpointToUpdate) => {
-		console.log(data, 'DATA');
 		try {
 			const url = 'http://localhost:8000/painpoints/' + idOfPainpointToUpdate
 			const editedPainpoint = await fetch(url, {
@@ -85,10 +82,22 @@ class PainpointContainer extends React.Component {
 					'Content-Type': 'application/json'
 				}
 			})
-
 			const parsedResponse = await editedPainpoint.json()
-			console.log(parsedResponse);
-			this.getPainpoints()
+			console.log(parsedResponse, '<-------- this is parsedResponse');
+			const painpointFormattedForState = {
+				'painpoint': {
+					...parsedResponse.data
+				},
+				'categories': []
+			}
+
+			const newArray = this.state.painpoints
+			newArray[this.state.painpointToEdit] = painpointFormattedForState
+
+			this.setState({
+				painpoints: newArray,
+				painpointToEdit: -1
+			})
 
 		} catch (err) {
 			console.log(err);
@@ -96,13 +105,32 @@ class PainpointContainer extends React.Component {
 	}
 
 	setPainpointToEdit = (indexOfPainpointToEdit) => {
-		console.log(indexOfPainpointToEdit)
 		this.setState({
 			painpointToEdit: indexOfPainpointToEdit
 		})
-		// return(
-		// 	<EditPainpoint painpoint={painpoint} editPainpoint={this.editPainpoint}/>
-		// )
+	}
+
+	destroyPainpoint = async (index, idOfPainpointToDestroy) => {
+		console.log(index, 'INDEX');
+		console.log(idOfPainpointToDestroy, 'idOfPainpointToDestroy');
+		try {
+			const url = 'http://localhost:8000/painpoints/' + idOfPainpointToDestroy
+			const deletePainpointResponse = await fetch(url, {
+				method: 'DELETE',
+				credentials: 'include'
+			})
+
+			const parsedResponse = await deletePainpointResponse.json()
+			console.log(parsedResponse); /// look at this and make sure delete worked otherwise you might be lying to your user by removing it from the screen
+
+
+
+			this.setState({
+				painpoints: this.state.painpoints.filter((painpoint, i) => i != index)
+			})
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
 	render() {
@@ -114,13 +142,12 @@ class PainpointContainer extends React.Component {
 				{
 					this.state.painpointToEdit === -1
 					?
-					null
+					<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit} destroyPainpoint={this.destroyPainpoint}/>
 					:
 					<EditPainpoint
 						painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  updatePainpoint={this.updatePainpoint}
 					/>
 				}
-				<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit}/>
 			</div>
 		)
 	}

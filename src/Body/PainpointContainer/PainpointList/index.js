@@ -15,10 +15,14 @@ const PainpointList = (props) => {
 						<h3>{ppc.painpoint.attachment}</h3>
 						<button onClick={
 							() => {
-								// console.log(i)
 								props.setPainpointToEdit(i)
 							}
 						}>Edit</button>
+					<button onClick={
+							() => {
+								props.destroyPainpoint(i, ppc.painpoint.id)
+							}
+						}>Delete</button>
 					<ul>{eachCategory}</ul>
 				</li>
 			</div>
