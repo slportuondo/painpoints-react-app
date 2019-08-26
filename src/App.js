@@ -20,7 +20,7 @@ class App extends React.Component {
       username: '',
       email: '',
       id: '',
-      filter: [], 
+      filter: [],
       loggedIn: false
     }
   }
@@ -118,9 +118,9 @@ class App extends React.Component {
       <main>
         <Switch>
 
-            <Route exact path='/' 
+            <Route exact path='/'
               render={(props) => <SignIn {...props} />} />
-            <Route exact path='/user/login' 
+            <Route exact path='/user/login'
               render={(props) => <Login {...props} login={this.login} />}/>
             <Route exact path='/user/register'
               render={(props) => <Register {...props} register={this.register} />}/>
@@ -128,18 +128,18 @@ class App extends React.Component {
 
           <Route>
             {this.state.loggedIn ? <Header logout={this.logout} userId={this.state.id}/> : null }
-            <Route path='/user/:id' 
+            <Route path='/user/:id'
               render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
-            <Route exact path='/painpoints' 
+            <Route exact path='/painpoints'
               render={(props) => <PainpointContainer {...props} />}/>
-            <Route exact path='/painpoint/:id' 
+            <Route exact path='/painpoint/:id'
               render={(props) => <SolutionContainer {...props} />}/>
             <Route exact path='/categories'
               render={(props) => <Category {...props} getFilter={this.getFilter} />}/>
             <Route exact path='/painpoints/filter'
               render={(props) => <FilterPainpoint {...props} filter={this.state.filter} />} />
-          </Route> 
-        
+          </Route>
+
         </Switch>
 
       </main>
