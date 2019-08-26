@@ -12,23 +12,23 @@ class PainpointContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getPainpoint()
+		this.getPainpoints()
 	}
 
-	getPainpoint = async () => {
+	getPainpoints = async () => {
 
 		try {
-			console.log("getPainpoint is working");
-			const getPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
+			console.log("getPainpoints is working");
+			const getPainpointsResponse = await fetch('http://localhost:8000/painpoints/', {
 				method: 'GET',
 				credentials: 'include'
 			})
 
-			if (getPainpointResponse.status !== 200) {
-				throw Error('getPainpointResponse is not working')
+			if (getPainpointsResponse.status !== 200) {
+				throw Error('getPainpointsResponse is not working')
 			}
 
-			const painpointsResponse = await getPainpointResponse.json()
+			const painpointsResponse = await getPainpointsResponse.json()
 			console.log(painpointsResponse, '<--- painpointsResponse');
 
 			this.setState({
@@ -57,6 +57,7 @@ class PainpointContainer extends React.Component {
 				painpoints: [...this.state.painpoints, parsedResponse.data]
 			})
 
+			this.getPainpoints()
 		} catch (err) {
 			console.log(err)
 		}

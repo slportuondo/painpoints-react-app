@@ -17,8 +17,6 @@ class CreatePainpoint extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('THIS IS THIS.STATE');
-    console.log(this.state);
     this.props.addPainpoint(this.state)
   }
 
