@@ -41,6 +41,7 @@ class PainpointContainer extends React.Component {
 	}
 
 	addPainpoint = async (data) => {
+		console.log(data, '<--- data in addPainpoint');
 		try {
 			const createPainpointResponse = await fetch('http://localhost:8000/painpoints/', {
 				method: 'POST',
@@ -52,6 +53,7 @@ class PainpointContainer extends React.Component {
 			})
 
 			const parsedResponse = await createPainpointResponse.json();
+			console.log(parsedResponse, '<---- parsedResponse in addPainpoint');
 
 			this.setState({
 				painpoints: [...this.state.painpoints, parsedResponse.data]

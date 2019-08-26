@@ -2,7 +2,7 @@ import React from 'react';
 
 class CreatePainpoint extends React.Component {
   constructor(){
-    super();
+    super()
 
     this.state = {
       head: '',

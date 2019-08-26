@@ -28,7 +28,7 @@ class Category extends React.Component {
 			}
 
 			const allCategories = await categoriesResponse.json()
-			console.log(allCategories, '<--- allCategories');
+			// console.log(allCategories, '<--- allCategories');
 
 			this.setState({
 				categories: allCategories.data
@@ -39,8 +39,10 @@ class Category extends React.Component {
 		}
 	}
 
-	selectCategory = async (categoryId, e) => {
-		console.log(categoryId, '<--- category selected');
+	selectCategory = async (category, e) => {
+		console.log(this.state, '<---- this.state in select category');
+
+		console.log(category, '<--- category selected');
 
 		const categoriesResponse = await fetch('http://localhost:8000/category/', {
 			method: 'GET',
@@ -52,22 +54,51 @@ class Category extends React.Component {
 		}
 
 		const allCategories = await categoriesResponse.json()
-		console.log(allCategories, '<--- allCategories');
+		// console.log(allCategories, '<--- allCategories');
 
-		for (let i = 0; i < allCategories.data.length; i++) {
-			// check if the category selected matches any of the categories in the list
-			if (allCategories.data[i].id === categoryId) {
+		let selectedCats = this.state.categoriesSelected
 
-				this.setState({
-					categoriesSelected: [...this.state.categoriesSelected, allCategories.data[i]]
-				})
-			}
+		if (selectedCats.length === 0) {
+			this.setState({
+				categoriesSelected: [category]
+			})
+
+			return
 		}
 
-		this.setState({
-			categories: allCategories.data
-		})
+		if (selectedCats.length > 0) {
+			console.log(selectedCats, '<--- if there is at least one category in selected');
+
+			for (let i = 0; i < selectedCats.length; i++) {
+
+				if (category.id === selectedCats[i].id) {
+					let newCategories = selectedCats.splice(i, 1)
+					console.log(newCategories, '<--- categories after splice');
+
+					this.setState({
+						categoriesSelected: [...selectedCats]
+					})
+
+					return
+				}
+			}
+
+			for (let i = 0; i < allCategories.data.length; i++) {
+				// check if the category selected matches any of the categories in the list
+				if (allCategories.data[i].id === category.id) {
+
+					// check all categories that were already selected and see if they already match the chosen category. if it does, then remove it
+
+					this.setState({
+						categoriesSelected: [...this.state.categoriesSelected, allCategories.data[i]]
+					})
+
+					return
+				}
+			}
+		}
 	}
+
 
 	createCategory = async (data) => {
 		try {
@@ -94,7 +125,7 @@ class Category extends React.Component {
 	}
 
 	render() {
-		console.log(this.state, '<--- this.state in Category');
+		console.log(this.state, '<--- this.state in Category in render');
 		return (
 			<div>
 				<h1>Categories</h1>
