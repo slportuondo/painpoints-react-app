@@ -4,6 +4,7 @@ import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
 import PainpointContainer from './Body/PainpointContainer'
+import ShowPainpoint from './Body/PainpointContainer/ShowPainpoint'
 import FilterPainpoint from './FilterPainpoint'
 import SolutionContainer from './Body/SolutionContainer'
 import Profile from './Profile'
@@ -138,6 +139,8 @@ class App extends React.Component {
             render={(props) => <Register {...props} register={this.register} />}/>
           <Route exact path='/painpoints' 
             render={(props) => <PainpointContainer {...props} />}/>
+          <Route exact path='/painpoint/:id' 
+            render={(props) => <ShowPainpoint {...props} />}/>
           <Route exact path='/solution' 
             render={(props) => <SolutionContainer {...props} />}/>
           <Route path='/user/:id' 

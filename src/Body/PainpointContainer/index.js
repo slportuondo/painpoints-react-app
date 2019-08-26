@@ -105,6 +105,10 @@ class PainpointContainer extends React.Component {
 		// )
 	}
 
+	showPainpoint = (ppId) => {
+		console.log('clicking on the painpoint');
+	}
+
 	render() {
 		console.log("this.state.painpointToEdit in render() in PainpointContainer:")
 		console.log(this.state.painpointToEdit);
@@ -120,7 +124,7 @@ class PainpointContainer extends React.Component {
 						painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  updatePainpoint={this.updatePainpoint}
 					/>
 				}
-				<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit}/>
+				<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit} showPainpoint={this.showPainpoint}/>
 			</div>
 		)
 	}
