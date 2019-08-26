@@ -109,8 +109,9 @@ class App extends React.Component {
         method: 'GET',
         credentials: 'include'
       })
+      console.log(userInfoResponse, '<--- userInfoResponse');
 
-      if (userInfoResponse !== 200) {
+      if (userInfoResponse.status !== 200) {
         throw Error('userInfoResponse does not work')
       }
 
