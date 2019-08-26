@@ -9,6 +9,7 @@ import FilterPainpoint from './FilterPainpoint'
 import SolutionContainer from './Body/SolutionContainer'
 import Profile from './Profile'
 import Category from './Category'
+import Header from './Header'
 import './App.css';
 
 
@@ -135,8 +136,11 @@ class App extends React.Component {
             render={(props) => <SignIn {...props} />} />
           <Route exact path='/user/login' 
             render={(props) => <Login {...props} login={this.login} />}/>
-          <Route exact path='/user/register' 
+          <Route exact path='/user/register'
             render={(props) => <Register {...props} register={this.register} />}/>
+        </Switch>
+        <Switch>
+          <Header />
           <Route exact path='/painpoints' 
             render={(props) => <PainpointContainer {...props} />}/>
           <Route exact path='/painpoint/:id' 
