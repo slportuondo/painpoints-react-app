@@ -126,7 +126,7 @@ class PainpointContainer extends React.Component {
 
 
 			this.setState({
-				painpoints: this.state.painpoints.filter((painpoint, i) => i != index)
+				painpoints: this.state.painpoints.filter((painpoint, i) => i !== index)
 			})
 		} catch (err) {
 			console.log(err);
