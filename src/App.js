@@ -46,18 +46,18 @@ class App extends React.Component {
     }
   }
 
-  logout = async () => {
-    const logoutResponse = await fetch('http://localhost:8000/user/logout', {
-      method: 'POST',
-      credentials: 'include'
-    })
+  // logout = async () => {
+  //   const logoutResponse = await fetch('http://localhost:8000/user/logout', {
+  //     method: 'POST',
+  //     credentials: 'include'
+  //   })
 
-    this.setState({
-      username: '',
-      email: '',
-      id: ''
-    })
-  }
+  //   this.setState({
+  //     username: '',
+  //     email: '',
+  //     id: ''
+  //   })
+  // }
 
 
   register = async (data) => {

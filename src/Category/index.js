@@ -66,7 +66,7 @@ class Category extends React.Component {
 			return
 		}
 
-		if (selectedCats.length > 0 && selectedCats.length < 3) {
+		if (selectedCats.length > 0) {
 			console.log(selectedCats, '<--- if there is at least one category in selected');
 
 			for (let i = 0; i < selectedCats.length; i++) {
@@ -82,21 +82,26 @@ class Category extends React.Component {
 					return
 				}
 			}
+			if (selectedCats.length < 3) {
+				for (let i = 0; i < allCategories.data.length; i++) {
+					// check if the category selected matches any of the categories in the list
+					if (allCategories.data[i].id === category.id) {
 
-			for (let i = 0; i < allCategories.data.length; i++) {
-				// check if the category selected matches any of the categories in the list
-				if (allCategories.data[i].id === category.id) {
+						// check all categories that were already selected and see if they already match the chosen category. if it does, then remove it
 
-					// check all categories that were already selected and see if they already match the chosen category. if it does, then remove it
+						this.setState({
+							categoriesSelected: [...this.state.categoriesSelected, allCategories.data[i]]
+						})
 
-					this.setState({
-						categoriesSelected: [...this.state.categoriesSelected, allCategories.data[i]]
-					})
-
-					return
+						return
+					}
 				}
 			}
 		}
+	}
+
+	filterSearch = () => {
+		
 	}
 
 
@@ -129,7 +134,12 @@ class Category extends React.Component {
 		return (
 			<div>
 				<h1>Categories</h1>
-				<CategoryList categories={this.state.categories} selectCategory={this.selectCategory}/>
+				<CategoryList 
+					categories={this.state.categories} 
+					selectCategory={this.selectCategory}
+					filterSearch={this.filterSearch}
+					categoriesSelected={this.state.categoriesSelected}
+				/>
 				<CreateCategory createCategory={this.createCategory}/>
 			</div>
 		)
