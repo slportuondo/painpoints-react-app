@@ -5,7 +5,7 @@ const ProfileList = (props) => {
 
 	const userPainpoints = props.painpoints.map((pp, i) => {
 		return (
-			<div key={'pp' + i}>
+			<div key={'pp' + i} style={{display: 'inline-block', width: '50%', textAlign: 'center'}}>
 				<div>Head: {pp.head}</div>
 				<div>Body: {pp.body}</div>
 				<div>Attachment: {pp.attachment}</div><br />
@@ -26,9 +26,9 @@ const ProfileList = (props) => {
 	return (
 		<div>
 			<h3 style={{display: 'inline-block', width: '50%', textAlign: 'center'}}>Your Painpoints</h3>
-			<ul style={{display: 'inline', position: 'relative', top: '20', width: '50%'}}>{userPainpoints}</ul>
 			<h3 style={{display: 'inline-block', width: '50%', textAlign: 'center'}}>Your Solutions</h3>
-			<ul style={{display: 'inline', position: 'relative', top: '20', width: '50%'}}>{userSolutions}</ul>
+			<ul style={{display: 'inline-block', top: '20', width: '50%', padding: 0, listStyleType: 'none', textAlign: 'center'}}>{userPainpoints}</ul>
+			<ul style={{display: 'inline-block', top: '20', width: '50%', padding: 0, listStyleType: 'none', textAlign: 'center'}}>{userSolutions}</ul>
 		</div>
 	)
 }
