@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Input, Form, Button} from 'semantic-ui-react'
 
 class CreateCategory extends React.Component {
 	constructor() {
@@ -25,16 +25,16 @@ class CreateCategory extends React.Component {
 	render() {
 		console.log(this.state, '<--- this.state in create category');
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<input 
-					type='text' 
-					name='category' 
-					placeholder='Category' 
-					value={this.state.category} 
+			<Form onSubmit={this.handleSubmit}>
+				<Input
+					type='text'
+					name='category'
+					placeholder='Category'
+					value={this.state.category}
 					onChange={this.handleChange}
 				/>
-				<button>Create</button>
-			</form>
+				<Button>Create</Button>
+			</Form>
 		)
 	}
 }
