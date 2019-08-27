@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { Container, Button, Form, Grid, Header, Message, Input, Segment } from 'semantic-ui-react'
 
 class Register extends React.Component {
 	constructor() {
@@ -68,43 +69,52 @@ class Register extends React.Component {
 	render() {
 		console.log(this.state, '<---- this.state in register');
 		return (
-			<div>
-				<h2>Register Page</h2>
-				<form onSubmit={this.handleSubmit}>
-					<input
-						type='text'
-						name='fullName'
-						placeholder='Full name'
-						value={this.state.fullName}
-						onChange={this.handleChange}
-					/><br />
-					<input
-						type='text'
-						name='username'
-						placeholder='Pick a username'
-						value={this.state.username}
-						onChange={this.handleChange}
-					/><br />
-					<input
-						type='text'
-						name='email'
-						placeholder='e.g. example@email.com'
-						value={this.state.email}
-						onChange={this.handleChange}
-					/><br />
-					<input
-						type='password'
-						name='password'
-						placeholder='Password'
-						value={this.state.password}
-						onChange={this.handleChange}
-					/>
-					<button>Register</button>
-				</form>
-				<div>
-					Already a member? <Link to='/user/login'>Login</Link>
-				</div>
-			</div>
+			<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+				<Grid.Column style={{ maxWidth: 450 }}>
+					<Header as='h2' color='teal' textAlign='center'>
+						Register an account
+					</Header>
+					<Form size='large' onSubmit={this.handleSubmit}>
+						<Segment stacked>
+							<Form.Input 
+								type='text'
+								name='fullName' 
+								placeholder='Full name'
+								value={this.state.fullName}
+								onChange={this.handleChange}
+							/>
+							<Form.Input 
+								type='text'
+								name='username' 
+								placeholder='Username'
+								value={this.state.username}
+								onChange={this.handleChange}
+							/>
+							<Form.Input
+								type='text'
+								name='email' 
+								placeholder='Email'
+								value={this.state.email}
+								onChange={this.handleChange}
+							/>
+							<Form.Input
+								type='password'
+								name='password' 
+								placeholder='Password'
+								value={this.state.password}
+								onChange={this.handleChange}
+							/>
+
+							<Button color='#279259' fluid size='large'>
+								Login
+							</Button>
+						</Segment>
+					</Form>
+					<Message>
+						Already a user? <Link to='/user/login'>Login Here!</Link>
+					</Message>
+				</Grid.Column>
+			</Grid>
 		)
 	}
 }

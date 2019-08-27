@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 
 class Login extends React.Component {
 	constructor() {
@@ -20,6 +21,8 @@ class Login extends React.Component {
 		e.preventDefault()
 
 		this.props.login(this.state)
+
+		
 
 		this.props.history.push('/categories')
 
@@ -51,36 +54,45 @@ class Login extends React.Component {
 	render() {
 		console.log(this.state, '<---- this.state in Login');
 		return (
-			<div>
-				<h2>Login Page</h2>
-					<form onSubmit={this.handleSubmit}>
-						<input 
-							type='text' 
-							name='username' 
-							placeholder='Username' 
-							value={this.state.username}
-							onChange={this.handleChange} 
-						/><br />
-						<input 
-							type='text' 
-							name='email' 
-							placeholder='e.g. example@email.com' 
-							value={this.state.email}
-							onChange={this.handleChange}
-						/><br />
-						<input 
-							type='password' 
-							name='password' 
-							placeholder='Password' 
-							value={this.state.password}
-							onChange={this.handleChange}
-						/>
-						<button>Log in</button>
-					</form>
-					<div>
-						Not a member? <Link to='/user/register'>Register Here!</Link>
-					</div>
-			</div>
+			<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+				<Grid.Column style={{ maxWidth: 450 }}>
+					<Header as='h2' color='teal' textAlign='center'>
+						Log-in to your account
+					</Header>
+					<Form size='large' onSubmit={this.handleSubmit}>
+						<Segment stacked>
+							<Form.Input 
+								type='text'
+								name='username' 
+								placeholder='Username'
+								value={this.state.username}
+								onChange={this.handleChange}
+							/>
+							<Form.Input
+								type='text'
+								name='email' 
+								placeholder='Email'
+								value={this.state.email}
+								onChange={this.handleChange}
+							/>
+							<Form.Input
+								type='password'
+								name='password' 
+								placeholder='Password'
+								value={this.state.password}
+								onChange={this.handleChange}
+							/>
+
+							<Button fluid size='large'>
+								Login
+							</Button>
+						</Segment>
+					</Form>
+					<Message>
+					New to us? <Link to='/user/register'>Register Here!</Link>
+					</Message>
+				</Grid.Column>
+			</Grid>
 		)
 	}
 

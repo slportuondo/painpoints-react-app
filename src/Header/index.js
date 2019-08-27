@@ -47,13 +47,17 @@ class Header extends React.Component {
 		console.log(this.state, '<---- state in Header');
 		// <button onClick={this.handleLogout}>Logout</button>
 		return (
-			<div>
+			<div style={{marginTop: '15px'}}>
 				<div 
 					style={{
 						backgroundColor: 'lightblue',
 						width: 100,
 						height: 100,
-						display: 'inline-block'
+						display: 'inline-block',
+						borderRadius: '50%',
+						marginRight: '10px',
+						textAlign: 'center',
+						padding: '35px 0 0 0'
 					}}
 					onClick={this.goToProfile}
 					>
@@ -64,7 +68,11 @@ class Header extends React.Component {
 						backgroundColor: 'lavender',
 						width: 100,
 						height: 100,
-						display: 'inline-block'
+						display: 'inline-block',
+						borderRadius: '50%',
+						marginRight: '10px',
+						textAlign: 'center',
+						padding: '35px 0 0 0'
 					}}
 					onClick={this.goHome}
 					>
@@ -75,7 +83,11 @@ class Header extends React.Component {
 						backgroundColor: 'gray',
 						width: 100,
 						height: 100,
-						display: 'inline-block'
+						display: 'inline-block',
+						borderRadius: '50%',
+						marginRight: '10px',
+						textAlign: 'center',
+						padding: '35px 0 0 0'
 					}}
 					onClick={this.goToCategories}
 					>
@@ -86,7 +98,11 @@ class Header extends React.Component {
 						backgroundColor: 'beige',
 						width: 100,
 						height: 100,
-						display: 'inline-block'
+						display: 'inline-block',
+						borderRadius: '50%',
+						marginRight: '10px',
+						textAlign: 'center',
+						padding: '35px 0 0 0'
 					}}
 					onClick={this.handleLogout}
 					>

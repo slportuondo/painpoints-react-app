@@ -1,0 +1,19 @@
+.list-titles {
+	display: inline-block;
+	position: relative;
+	width: 50%;
+	text-align: center;
+	color: #bababa;
+	font-size: 25px;
+	height: 100px;
+	padding: 40px 0 0 0;
+}
+
+.user-list {
+	display: inline-block;
+	top: '20';
+	width: 50%;
+	padding: 0;
+	list-style-type: none;
+	text-align: center
+}

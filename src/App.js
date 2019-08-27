@@ -35,20 +35,22 @@ class App extends React.Component {
       }
     })
 
-    if (loginResponse !== 200) {
-      const { history } = this.props
-      if (history) history.push('/user/login')
+    console.log(loginResponse, '<--- loginResponse');
+
+    if (loginResponse.status !== 200) {
+        console.log('not 200');
+        const { history } = this.props
+        if (history) history.push('/user/login')
     }
 
     const parsedResponse = await loginResponse.json();
-    // console.log(parsedResponse, '<---- parsedResponse in login');
+    console.log(parsedResponse, '<---- parsedResponse in login');
 
     if (parsedResponse) {
       this.setState({
         ...parsedResponse.data,
         loggedIn: true
       })
-
       return parsedResponse.data
 
     } else {
@@ -69,8 +71,6 @@ class App extends React.Component {
       id: '',
       loggedIn: false
     })
-
-
 
   }
 

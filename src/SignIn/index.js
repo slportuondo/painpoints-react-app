@@ -1,5 +1,7 @@
 import React from 'react'
-// import { Link } from 'react-router-dom';
+import { Button, Container, Header } from 'semantic-ui-react'
+import './signIn.css'
+
 
 class SignIn extends React.Component {
 
@@ -13,11 +15,39 @@ class SignIn extends React.Component {
 
 	render () {
 		return (
-			<div>
-				<h1>Sign In</h1>
-				<button onClick={this.toRegister}>Create an account</button>
-				<button onClick={this.toLogin}>Log in</button>
-			</div>
+			<Container
+				text
+				verticalAlign='middle' 
+				textAlign='center'
+				className='signin_container'
+			>
+			
+				<Header
+					as='h1'
+					content='PAINPOINT'
+					style={{
+						fontSize: '3em',
+						fontColor: 'black',
+						fontWeight: 'normal',
+						marginBottom: 0
+					}}
+				/>
+				<Header
+					as='h2'
+					content='Sign In Page'
+					style={{
+						fontSize: '1.6em',
+						fontWeight: 'normal'
+					}}
+					className='subtitle'
+				/>
+				<Button primary size='huge' style={{backgroundColor: '#bababa'}} onClick={this.toLogin}>
+					Login
+				</Button>
+				<Button primary size='huge' style={{backgroundColor: '#6f2f9b'}} onClick={this.toRegister}>
+					Register
+				</Button>
+			</Container>
 		)
 	}
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import ProfileList from '../Profile/ProfileList'
+import { Divider } from 'semantic-ui-react'
+import './profile.css'
 
 class Profile extends React.Component {
 	constructor() {
@@ -53,7 +55,8 @@ class Profile extends React.Component {
 		console.log(this.state, '<--- state in profile');
 		return(
 			<div>
-				<h1 style={{textAlign: 'center'}}>User Profile Page</h1>
+				<h1 style={{textAlign: 'center', margin: '5%', color: '#279259'}}>User Profile Page</h1>
+				<Divider />
 				<ProfileList painpoints={this.state.painpoints} solutions={this.state.solutions}/>
 			</div>
 		)

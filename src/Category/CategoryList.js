@@ -6,7 +6,7 @@ const CategoryList = (props) => {
 	const listOfCategories = props.categories.map((category, i) => {
 		return (
 			<div
-				style={{width: 150, height: 50, backgroundColor: 'lavender', textAlign: 'center', border: '2px solid black'}}
+				style={{marginBottom: '20px', padding: '10px', borderRadius: '25px', width: 150, height: 50, backgroundColor: 'lavender', textAlign: 'center', border: '1px solid black'}}
 				onClick={props.selectCategory.bind(null, category)}
 				key={i} >
 				{category.category}
@@ -28,12 +28,12 @@ const CategoryList = (props) => {
 					? <div>
 							<h3>Add categories to painpoint</h3>
 							{filteredCategories}
-							<button onClick={() => props.painpointCategoryJoin()}>Add Categories</button>
+							<button onClick={() => props.painpointCategoryJoin}>Add Categories</button>
 						</div>
 					: <div>
 							<h3>Filter by:</h3>
 							{filteredCategories}
-							<button onClick={() => props.filterSearch}>Search</button>
+							<button onClick={props.filterSearch}>Search</button>
 						</div>
 			}
 

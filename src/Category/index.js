@@ -128,7 +128,7 @@ class Category extends React.Component {
 	}
 
 	painpointCategoryJoin = async() => {
-		if (this.state.categoriesSelected != []){
+		if (this.state.categoriesSelected !== []){
 			this.state.categoriesSelected.forEach(async (cat, i) => {
 				let data = {
 					painpoint: this.props.painpointID,
@@ -190,7 +190,6 @@ class Category extends React.Component {
 								/>
 						</div>
 					: <div>
-							<button>Profile Page</button>
 							<h1>Categories</h1>
 							<CategoryList
 								categories={this.state.categories}
