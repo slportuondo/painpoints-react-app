@@ -3,6 +3,7 @@ import PainpointList from './PainpointList'
 import CreatePainpoint from './CreatePainpoint'
 import EditPainpoint from './EditPainpoint'
 import Category from '../../Category'
+import { Grid } from 'semantic-ui-react'
 class PainpointContainer extends React.Component {
 	constructor() {
 		super()
@@ -135,15 +136,21 @@ class PainpointContainer extends React.Component {
 
 		return (
 			<div>
-				<CreatePainpoint addPainpoint={this.addPainpoint}/>
-				<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit} destroyPainpoint={this.destroyPainpoint}/>
-				{
-					this.state.addingCategories
-					? <Category painpointID={this.state.painpoints[0].painpoint.id} addingCategories={this.state.addingCategories} />
-					:	(this.state.painpointToEdit === -1)
-						? null
-						: <EditPainpoint painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  updatePainpoint={this.updatePainpoint} />
-				}
+				<Grid columns='three' verticalAlign='middle' textAlign='center'>
+					<Grid.Column width={2}></Grid.Column>
+					<Grid.Column width={6} >
+						<CreatePainpoint addPainpoint={this.addPainpoint}/>
+						<PainpointList painpoints={this.state.painpoints} setPainpointToEdit={this.setPainpointToEdit} destroyPainpoint={this.destroyPainpoint}/>
+						{
+							this.state.addingCategories
+							? <Category painpointID={this.state.painpoints[0].painpoint.id} addingCategories={this.state.addingCategories} />
+							:	(this.state.painpointToEdit === -1)
+								? null
+								: <EditPainpoint painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  updatePainpoint={this.updatePainpoint} />
+						}
+					</Grid.Column>
+					<Grid.Column width={2}></Grid.Column>
+				</Grid>
 			</div>
 		)
 	}

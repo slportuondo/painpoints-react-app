@@ -1,41 +1,43 @@
 import React from 'react'
-
+import { Button, Divider } from 'semantic-ui-react'
 
 const CategoryList = (props) => {
 
 	const listOfCategories = props.categories.map((category, i) => {
 		return (
-			<div
-				style={{width: 150, height: 50, backgroundColor: 'lavender', textAlign: 'center', border: '2px solid black'}}
-				onClick={props.selectCategory.bind(null, category)}
-				key={i} >
-				{category.category}
+			<div key={i} >
+				<Button color='violet' size='small' fluid='true' onClick={props.selectCategory.bind(null, category)}>
+					{category.category}
+				</Button>
 			</div>
 		)
 	})
 
 	const filteredCategories = props.categoriesSelected.map((filteredCategory, i) => {
 		return (
-			<div key={i}>{filteredCategory.category}</div>
+			<div key={i}>
+				<Button disabled size='small' color='green'>
+					{filteredCategory.category}
+				</Button>
+			</div>
 		)
 	})
 
 	return(
 		<div>
-			{listOfCategories}
+			<div>
+				{listOfCategories}
+			</div>
+			<Divider />
 			{
 				props.selectingForPainpoint
-					? <div>
-							<h3>Add categories to painpoint</h3>
-							{filteredCategories}
-							<button onClick={() => props.painpointCategoryJoin()}>Add Categories</button>
-						</div>
-					: <div>
-							<h3>Filter by:</h3>
-							{filteredCategories}
-							<button onClick={() => props.filterSearch}>Search</button>
-						</div>
+					? <Button onClick={() => props.painpointCategoryJoin()}>Add Categories</Button>
+					: <Button onClick={() => props.filterSearch()}>Search</Button>
 			}
+			<Button.Group>
+				{filteredCategories}
+			</Button.Group>
+
 
 		</div>
 	)
