@@ -2,6 +2,7 @@ import React from 'react'
 import CategoryList from '../Category/CategoryList'
 import CreateCategory from '../Category/CreateCategory'
 // import Header from '../Header'
+import { Input, Form, Button, List } from 'semantic-ui-react'
 
 class Category extends React.Component {
 	constructor(props) {
@@ -97,7 +98,6 @@ class Category extends React.Component {
 	}
 
 	filterSearch = (e) => {
-		console.log("filter called");
 		this.props.getFilter(this.state.categoriesSelected)
 		this.props.history.push('/painpoints/filter')
 	}
