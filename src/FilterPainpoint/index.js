@@ -35,7 +35,7 @@ class FilterPainpoint extends React.Component {
 
 
 			const allPainpoints = await getPainpointsResponse.json()
-			console.log(allPainpoints.data, '<--- allPainpoints');
+			// console.log(allPainpoints.data, '<--- allPainpoints');
 
 			// let occ = {};
 			const filteredPainpoints = allPainpoints.data.filter((pp) => {
@@ -63,8 +63,8 @@ class FilterPainpoint extends React.Component {
 
 
 	render() {
-		console.log(this.props, '<--- this.props in FilterPainpoint');
-		console.log(this.state, '<---- this.state in FilterPainpoint');
+		// console.log(this.props, '<--- this.props in FilterPainpoint');
+		// console.log(this.state, '<---- this.state in FilterPainpoint');
 
 		return(
 			<div>

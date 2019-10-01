@@ -7,12 +7,12 @@ class CreateSolution extends React.Component {
 		this.state = {
 			head: '',
 			body: '',
-			painpoint: ''
+			attachment: ''
 		}
 	}
 
 	componentDidMount() {
-		this.setState({painpointId: parseInt(this.props.painpointId)})
+		this.setState({painpoint: parseInt(this.props.painpointId)})
 	}
 
 	handleChange = (e) => {
@@ -43,6 +43,13 @@ class CreateSolution extends React.Component {
 						name='body'
 						placeholder='Solution Description'
 						value= {this.state.body}
+						onChange={this.handleChange}
+					/><br />
+					<input
+						type='attachment'
+						name='attachment'
+						placeholder='Attachment'
+						value= {this.state.attachment}
 						onChange={this.handleChange}
 					/><br />
 					<button>Create</button>

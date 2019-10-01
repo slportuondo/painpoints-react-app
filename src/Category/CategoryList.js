@@ -5,27 +5,33 @@ const CategoryList = (props) => {
 
 	const listOfCategories = props.categories.map((category, i) => {
 		return (
-			<div key={i} >
-				<Button color='violet' size='small' fluid='true' onClick={props.selectCategory.bind(null, category)}>
-					{category.category}
-				</Button>
-			</div>
+			<Button 
+				key={i}
+				color='violet' 
+				size='small'  
+				onClick={props.selectCategory.bind(null, category)}
+			>
+				{category.category}
+			</Button>
 		)
 	})
-
+	
 	const filteredCategories = props.categoriesSelected.map((filteredCategory, i) => {
 		return (
-			<div key={i}>
-				<Button disabled size='small' color='green'>
-					{filteredCategory.category}
-				</Button>
-			</div>
+			<Button 
+				key={i}
+				disabled 
+				size='small' 
+				color='green'
+			>
+				{filteredCategory.category}
+			</Button>
 		)
 	})
 
 	return(
 		<div>
-			<div>
+			<div className='categoryList'>
 				{listOfCategories}
 			</div>
 			<Divider />

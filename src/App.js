@@ -118,12 +118,12 @@ class App extends React.Component {
       <main>
         <Switch>
 
-            <Route exact path='/'
-              render={(props) => <SignIn {...props} />} />
-            <Route exact path='/user/login'
-              render={(props) => <Login {...props} login={this.login} />}/>
-            <Route exact path='/user/register'
-              render={(props) => <Register {...props} register={this.register} />}/>
+          <Route exact path='/'
+            render={(props) => <SignIn {...props} />} />
+          <Route exact path='/user/login'
+            render={(props) => <Login {...props} login={this.login} />}/>
+          <Route exact path='/user/register'
+            render={(props) => <Register {...props} register={this.register} />}/>
 
 
           <Route>

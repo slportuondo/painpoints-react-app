@@ -42,6 +42,7 @@ class SolutionContainer extends React.Component {
 	}
 
 	addSolution = async (data) => {
+		console.log(data, '<---- data in addSolution');
 		try {
 			const createdSolution = await fetch('http://localhost:8000/solution/', {
 				method: 'POST',
@@ -53,6 +54,7 @@ class SolutionContainer extends React.Component {
 			})
 
 			const createdSolutionResponse = await createdSolution.json()
+			console.log(createdSolutionResponse, '<--- createdSolutionResponse');
 
 			this.setState({
 				solutions: [...this.state.solutions, createdSolutionResponse.data]

@@ -16,8 +16,7 @@ class SignIn extends React.Component {
 	render () {
 		return (
 			<Container
-				text
-				// verticalAlign='middle' 
+				text 
 				textAlign='center'
 				className='signin_container'
 			>
