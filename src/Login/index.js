@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+// import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 
 class Login extends React.Component {
 	constructor() {
@@ -54,45 +54,39 @@ class Login extends React.Component {
 	render() {
 		console.log(this.state, '<---- this.state in Login');
 		return (
-			<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-				<Grid.Column style={{ maxWidth: 450 }}>
-					<Header as='h2' color='teal' textAlign='center'>
-						Log-in to your account
-					</Header>
-					<Form size='large' onSubmit={this.handleSubmit}>
-						<Segment stacked>
-							<Form.Input 
-								type='text'
-								name='username' 
-								placeholder='Username'
-								value={this.state.username}
-								onChange={this.handleChange}
-							/>
-							<Form.Input
-								type='text'
-								name='email' 
-								placeholder='Email'
-								value={this.state.email}
-								onChange={this.handleChange}
-							/>
-							<Form.Input
-								type='password'
-								name='password' 
-								placeholder='Password'
-								value={this.state.password}
-								onChange={this.handleChange}
-							/>
-
-							<Button fluid size='large'>
-								Login
-							</Button>
-						</Segment>
-					</Form>
-					<Message>
-					New to us? <Link to='/user/register'>Register Here!</Link>
-					</Message>
-				</Grid.Column>
-			</Grid>
+			<div className='register-login'>
+				<form 
+					className='signInForms' 
+					onSubmit={this.handleSubmit}
+					autoComplete='off'
+				>
+					<input
+						className='signInFormInput'
+						type='text'
+						name='username' 
+						placeholder='USERNAME'
+						value={this.state.username}
+						onChange={this.handleChange}
+					/>
+					<input 
+						className='signInFormInput'
+						type="text"
+						name='email' 
+						placeholder='EMAIL'
+						value={this.state.email}
+						onChange={this.handleChange}
+					/>
+					<input
+						className='signInFormInput'
+						type='password'
+						name='password' 
+						placeholder='PASSWORD'
+						value={this.state.password}
+						onChange={this.handleChange}
+					/>
+					<button className='signInFormButton'>SUBMIT</button>
+				</form>
+			</div>
 		)
 	}
 

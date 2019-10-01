@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, Container, Header } from 'semantic-ui-react'
-import './signIn.css'
+import { Button } from 'semantic-ui-react'
 
 
 class SignIn extends React.Component {
@@ -15,39 +14,28 @@ class SignIn extends React.Component {
 
 	render () {
 		return (
-			<Container
-				text
-				verticalAlign='middle' 
-				textAlign='center'
-				className='signin_container'
-			>
-			
-				<Header
-					as='h1'
-					content='PAINPOINT'
-					style={{
-						fontSize: '3em',
-						fontColor: 'black',
-						fontWeight: 'normal',
-						marginBottom: 0
-					}}
-				/>
-				<Header
-					as='h2'
-					content='Sign In Page'
-					style={{
-						fontSize: '1.6em',
-						fontWeight: 'normal'
-					}}
-					className='subtitle'
-				/>
-				<Button primary size='huge' style={{backgroundColor: '#bababa'}} onClick={this.toLogin}>
-					Login
-				</Button>
-				<Button primary size='huge' style={{backgroundColor: '#6f2f9b'}} onClick={this.toRegister}>
-					Register
-				</Button>
-			</Container>
+			<div className='signIn'>
+				<div 
+					className='signInSpace'
+				></div>
+				<div className='signinContainer'>
+					<h1 className='signInTitle'>SIGN IN TO PAIN POINTS</h1>
+					<Button 
+						className='signInLoginButton'
+						size='huge' 
+						onClick={this.toLogin}
+					>
+						LOGIN
+					</Button>
+					<Button
+						className='signInRegisterButton'
+						size='huge' 
+						onClick={this.toRegister}
+					>
+						CREATE AN ACCOUNT
+					</Button>
+				</div>
+			</div>
 		)
 	}
 }

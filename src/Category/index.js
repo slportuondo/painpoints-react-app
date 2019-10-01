@@ -2,7 +2,7 @@ import React from 'react'
 import CategoryList from '../Category/CategoryList'
 import CreateCategory from '../Category/CreateCategory'
 // import Header from '../Header'
-import { Input, Form, Button, List } from 'semantic-ui-react'
+// import { Input, Form, Button, List } from 'semantic-ui-react'
 
 class Category extends React.Component {
 	constructor(props) {
@@ -79,6 +79,7 @@ class Category extends React.Component {
 					return
 				}
 			}
+
 			if (selectedCats.length < 3) {
 				for (let i = 0; i < allCategories.data.length; i++) {
 					// check if the category selected matches any of the categories in the list
@@ -105,7 +106,6 @@ class Category extends React.Component {
 
 	createCategory = async (data) => {
 		try {
-
 			const createCategoryResponse = await fetch('http://localhost:8000/category/', {
 				method: 'POST',
 				credentials: 'include',
@@ -116,7 +116,6 @@ class Category extends React.Component {
 			})
 
 			const createdCategory = await createCategoryResponse.json()
-			console.log(createdCategory, '<--- AGHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
 
 			this.setState({
 				categories: [...this.state.categories, createdCategory.data]
@@ -176,7 +175,7 @@ class Category extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div style={{backgroundColor: '#383838', height: '80vh'}}>
 				{
 					this.props.painpointID
 					? <div>
@@ -186,17 +185,17 @@ class Category extends React.Component {
 								categoriesSelected={this.state.categoriesSelected}
 								filterSearch={this.filterSearch}
 								painpointCategoryJoin={this.painpointCategoryJoin}
-								addingCategories={this.props.addingCategories}
-								/>
+								selectingForPainpoint={true}
+							/>
 						</div>
-					: <div>
-							<h1>Categories</h1>
+					: <div style={{position: 'absolute', marginTop: '40px'}}>
 							<CategoryList
 								categories={this.state.categories}
 								selectCategory={this.selectCategory}
 								filterSearch={this.filterSearch}
 								categoriesSelected={this.state.categoriesSelected}
-								/><br />
+								painpointCategoryJoin={this.painpointCategoryJoin}
+							/>
 							<CreateCategory createCategory={this.createCategory}/>
 						</div>
 				}

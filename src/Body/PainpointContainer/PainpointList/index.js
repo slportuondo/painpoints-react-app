@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Input, Form, Button, List, Grid, Container } from 'semantic-ui-react'
+import { Button, List, Grid, Container } from 'semantic-ui-react'
 
 const PainpointList = (props) => {
 
@@ -15,7 +15,7 @@ const PainpointList = (props) => {
 						)
 		})
 		return (
-			<div key-={i}>
+			<div key={i}>
 				<Grid.Row>
 					<h2><Link to={`/painpoint/${ppc.painpoint.id}`}>{ppc.painpoint.head}</Link></h2>
 					<Container>

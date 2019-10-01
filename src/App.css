@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap');
+
+/* ===== SIGN IN ===== */
+
+.signIn {
+	display: flex;
+	flex-direction: row;
+}
+
+.signinContainer {
+	height: 100vh;
+	width: 50%;
+	background: linear-gradient(to top, #5d2682 0%, #bf8de0 100%);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;	
+}
+
+.signInSpace {
+	height: 100vh;
+	width: 50%;
+	background-color: #ededed;
+}
+
+.signInTitle {
+	font-size: 35px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bolder;
+	text-decoration: underline;
+	color: white;
+	text-align: center;
+}
+
+.ui.button.signInLoginButton {
+	width: 300px;
+	height: 50px;
+	background: #6f2f9b;
+	color: white;
+	margin: 10px auto;
+	border-radius: 10px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.ui.button.signInRegisterButton {
+	width: 300px;
+	height: 50px;
+	background-color: #c5c2c2;
+	color: white;
+	margin: 10px auto;
+	border-radius: 10px;
+	font-family: 'Roboto', sans-serif;
+}
+
+
+/* ===== REGISTER/LOGIN ====== */
+
+.register-login {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ededed;
+}
+
+.signInForms {
+	width: 320px;
+}
+
+.signInFormInput {
+	width: 300px;
+	height: 50px;
+	background-color: #6f2f9b;
+	border: 0;
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-size: 25px;
+	font-weight: bolder;
+	margin: 10px 0;
+}
+
+.signInFormInput::placeholder {
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bolder;
+}
+
+.signInFormInput:focus::placeholder {
+	color: transparent;
+}
+
+.signInFormButton {
+	width: 300px;
+	height: 50px;
+	border-radius: 10px;
+	background-color: #c5c2c2;
+	margin: 10px 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 25px;
+	font-weight: bolder;
+}
+
+
+/* ===== HEADER ===== */
+
+.nav {
+	height: 20vh;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: black;
+}
+
+.user.circle.icon.nav-profile {
+	font-size: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 5px;
+	color: white;
+}
+
+.nav-items {
+	display: flex;
+	flex-direction: row;
+	width: 200px;
+	margin: 0 30px;
+}
+
+.nav-button {
+	width: 50px;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+}
+
+.nav-title {
+	color: white;
+	width: 25%;
+	text-align: center;
+	font-size: 40px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bolder;
+}
+
+#nav-logout {
+	height: 30px;
+	width: 100px;
+	border-radius: 10px;
+	background-color: #75160f;
+	font-size: 12px;
+	letter-spacing: 3px;
+	margin: 0;
+}
+
+#nav-home {
+	height: 50px;
+	border-radius: 50px;
+	background-color: #6f2f9b;
+	font-size: 10px;
+}
+
+#nav-ind {
+	height: 50px;
+	border-radius: 50px;
+	background-color: #c5c2c2;
+	font-size: 8px;
+}
+
+.nav-user {
+	position: absolute;
+	right: 30px; 
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+}
+
+/* ===== CATEGORIES/INDUSTRIES ===== */
+
+.category-list {
+	width: 80%;
+	margin: 0 auto 25px auto;
+	columns: 5;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.cat-button {
+	width: 150px;
+	height: 40px;
+	background-color: #6f2f9b;
+	border-radius: 30px;
+	border: none;
+	color: white;
+	font-family: 'Be Vietnam', sans-serif;
+	font-weight: lighter;
+	font-size: 20px;
+	margin: 0 10px 20px 10px;
+}
+
+.category-list-search {
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+.create-category {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

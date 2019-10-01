@@ -17,11 +17,11 @@ class App extends React.Component {
     super()
 
     this.state = {
-      username: '',
-      email: '',
-      id: '',
+      username: 'jeremychon',
+      email: 'j@gmail.com',
+      id: '7',
       filter: [],
-      loggedIn: false
+      loggedIn: true
     }
   }
 
@@ -118,16 +118,23 @@ class App extends React.Component {
       <main>
         <Switch>
 
-            <Route exact path='/'
-              render={(props) => <SignIn {...props} />} />
-            <Route exact path='/user/login'
-              render={(props) => <Login {...props} login={this.login} />}/>
-            <Route exact path='/user/register'
-              render={(props) => <Register {...props} register={this.register} />}/>
+          <Route exact path='/'
+            render={(props) => <SignIn {...props} />} />
+          <Route exact path='/user/login'
+            render={(props) => <Login {...props} login={this.login} />}/>
+          <Route exact path='/user/register'
+            render={(props) => <Register {...props} register={this.register} />}/>
 
 
           <Route>
-            {this.state.loggedIn ? <Header logout={this.logout} userId={this.state.id}/> : null }
+            {this.state.loggedIn ? 
+              <Header 
+                logout={this.logout} 
+                userId={this.state.id}
+                username={this.state.username}
+              /> 
+              : null 
+            }
             <Route path='/user/:id'
               render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
             <Route exact path='/painpoints'
