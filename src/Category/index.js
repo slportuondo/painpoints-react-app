@@ -145,7 +145,7 @@ class Category extends React.Component {
 						}
 					})
 					const joinPPCResponseParsed = await joinPPCResponse.json()
-
+					this.props.stillEditing()
 				} catch (err) {
 					console.log(err);
 				}
@@ -186,7 +186,7 @@ class Category extends React.Component {
 								categoriesSelected={this.state.categoriesSelected}
 								filterSearch={this.filterSearch}
 								painpointCategoryJoin={this.painpointCategoryJoin}
-								selectingForPainpoint={true}
+								addingCategories={this.props.addingCategories}
 								/>
 						</div>
 					: <div>

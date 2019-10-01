@@ -6,7 +6,13 @@ const PainpointList = (props) => {
 
 	const allPainpoints = props.painpoints.map((ppc, i) => {
 		let eachCategory = ppc.categories.map((cat, idx) => {
-			return <List.Item key={idx}>{cat.category}</List.Item>
+			return (
+							<div key={idx}>
+								<Button disabled size='small' color='green'>
+									{cat.category}
+								</Button>
+							</div>
+						)
 		})
 		return (
 			<div key-={i}>
@@ -19,9 +25,11 @@ const PainpointList = (props) => {
 						{ppc.painpoint.attachment}
 					</Container>
 					<Container>
+						<Button.Group>{eachCategory}</Button.Group>
+					</Container>
+					<Container>
 						<Button onClick={() => props.setPainpointToEdit(i)}>Edit</Button>
 						<Button onClick={() => props.destroyPainpoint(i, ppc.painpoint.id)}>Delete</Button>
-						<List horizontal>{eachCategory}</List>
 					</Container>
 				</Grid.Row>
 			</div>

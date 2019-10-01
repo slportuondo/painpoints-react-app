@@ -30,14 +30,13 @@ const CategoryList = (props) => {
 			</div>
 			<Divider />
 			{
-				props.selectingForPainpoint
+				props.addingCategories
 					? <Button onClick={() => props.painpointCategoryJoin()}>Add Categories</Button>
 					: <Button onClick={() => props.filterSearch()}>Search</Button>
 			}
 			<Button.Group>
 				{filteredCategories}
 			</Button.Group>
-
 
 		</div>
 	)
