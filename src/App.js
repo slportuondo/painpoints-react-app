@@ -21,7 +21,7 @@ class App extends React.Component {
       email: '',
       id: '',
       filter: [],
-      loggedIn: false
+      loggedIn: true
     }
   }
 

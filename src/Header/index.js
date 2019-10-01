@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
+import { Icon } from 'semantic-ui-react'
 
 // const Header = (props) => {
 class Header extends React.Component {
@@ -45,69 +46,27 @@ class Header extends React.Component {
 
 	render() {	
 		console.log(this.state, '<---- state in Header');
-		// <button onClick={this.handleLogout}>Logout</button>
 		return (
-			<div style={{marginTop: '15px'}}>
-				<div 
-					style={{
-						backgroundColor: 'lightblue',
-						width: 100,
-						height: 100,
-						display: 'inline-block',
-						borderRadius: '50%',
-						marginRight: '10px',
-						textAlign: 'center',
-						padding: '35px 0 0 0'
-					}}
-					onClick={this.goToProfile}
-					>
-					Profile
+			<div className='nav'>
+				<div className='nav-items'>
+					<Icon 
+						name='user circle'
+						className='nav-profile'
+					/>
+					<div 
+						className='nav-button'
+						id='nav-home'
+					>HOME</div>
+					<div 
+						className='nav-button' 
+						id='nav-ind'
+					>INDUSTRIES</div>
 				</div>
+				<div className='nav-title'>PAINPOINTS</div>
 				<div 
-					style={{
-						backgroundColor: 'lavender',
-						width: 100,
-						height: 100,
-						display: 'inline-block',
-						borderRadius: '50%',
-						marginRight: '10px',
-						textAlign: 'center',
-						padding: '35px 0 0 0'
-					}}
-					onClick={this.goHome}
-					>
-					Home
-				</div>
-				<div 
-					style={{
-						backgroundColor: 'gray',
-						width: 100,
-						height: 100,
-						display: 'inline-block',
-						borderRadius: '50%',
-						marginRight: '10px',
-						textAlign: 'center',
-						padding: '35px 0 0 0'
-					}}
-					onClick={this.goToCategories}
-					>
-					Industries
-				</div>
-				<div 
-					style={{
-						backgroundColor: 'beige',
-						width: 100,
-						height: 100,
-						display: 'inline-block',
-						borderRadius: '50%',
-						marginRight: '10px',
-						textAlign: 'center',
-						padding: '35px 0 0 0'
-					}}
-					onClick={this.handleLogout}
-					>
-					Logout
-				</div>
+					className='nav-button'
+					id='nav-logout'
+				>LOGOUT</div>
 			</div>
 		)
 	}

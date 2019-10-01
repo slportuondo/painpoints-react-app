@@ -104,6 +104,83 @@
 }
 
 
+/* ===== HEADER ===== */
+
+.nav {
+	height: 20vh;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: black;
+}
+
+.user.circle.icon.nav-profile {
+	font-size: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 0;
+	color: white;
+}
+
+.nav-items {
+	display: flex;
+	flex-direction: row;
+	width: 200px;
+	margin-left: 30px;
+}
+
+.nav-button {
+	width: 50px;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+}
+
+.nav-title {
+	color: white;
+	width: 25%;
+	text-align: center;
+	font-size: 40px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bolder;
+}
+
+#nav-logout {
+	height: 30px;
+	width: 100px;
+	border-radius: 10px;
+	background-color: #75160f;
+	font-size: 12px;
+	letter-spacing: 3px;
+	margin: 0;
+	right: 30px;
+	position: absolute;
+}
+
+#nav-home {
+	height: 50px;
+	border-radius: 50px;
+	background-color: #6f2f9b;
+	font-size: 10px;
+}
+
+#nav-ind {
+	height: 50px;
+	border-radius: 50px;
+	background-color: #c5c2c2;
+	font-size: 8px;
+}
+
+
+
+
+
 
 
 
