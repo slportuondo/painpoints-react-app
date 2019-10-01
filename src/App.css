@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap');
 
 /* ===== SIGN IN ===== */
 
@@ -175,6 +176,44 @@
 	border-radius: 50px;
 	background-color: #c5c2c2;
 	font-size: 8px;
+}
+
+/* ===== CATEGORIES/INDUSTRIES ===== */
+
+.category-list {
+	width: 80%;
+	margin: 0 auto 25px auto;
+	columns: 5;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.cat-button {
+	width: 150px;
+	height: 40px;
+	background-color: #6f2f9b;
+	border-radius: 30px;
+	border: none;
+	color: white;
+	font-family: 'Be Vietnam', sans-serif;
+	font-weight: lighter;
+	font-size: 20px;
+	margin: 0 10px 20px 10px;
+}
+
+.category-list-search {
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+.create-category {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 25px;
 }
 
 

@@ -1,48 +1,52 @@
 import React from 'react'
-import { Button, Divider } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 const CategoryList = (props) => {
 
 	const listOfCategories = props.categories.map((category, i) => {
 		return (
-			<Button 
-				key={i}
-				color='violet' 
-				size='small'  
+			<button 
+				key={i}  
+				className='cat-button'
 				onClick={props.selectCategory.bind(null, category)}
 			>
 				{category.category}
-			</Button>
+			</button>
 		)
 	})
 	
 	const filteredCategories = props.categoriesSelected.map((filteredCategory, i) => {
 		return (
-			<Button 
+			<button 
 				key={i}
-				disabled 
-				size='small' 
-				color='green'
+				className='cat-button' 
+				style={{backgroundColor: '#66cc72'}}
 			>
 				{filteredCategory.category}
-			</Button>
+			</button>
 		)
 	})
 
 	return(
 		<div>
-			<div className='categoryList'>
+			<div className='category-list'>
 				{listOfCategories}
 			</div>
-			<Divider />
-			{
-				props.selectingForPainpoint
-					? <Button onClick={() => props.painpointCategoryJoin()}>Add Categories</Button>
-					: <Button onClick={() => props.filterSearch()}>Search</Button>
-			}
-			<Button.Group>
+			<div className='category-list-search'>
+				{
+					props.selectingForPainpoint
+						? <Button onClick={() => props.painpointCategoryJoin()}>Add Categories</Button> 
+						: 
+						<button
+							className='cat-button'
+							style={{backgroundColor: '#c5c2c2'}}
+							onClick={() => props.filterSearch()}
+						>Search</button>
+				}
+			</div>
+			<div className='category-list-search'>
 				{filteredCategories}
-			</Button.Group>
+			</div>
 
 
 		</div>

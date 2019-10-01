@@ -106,7 +106,6 @@ class Category extends React.Component {
 
 	createCategory = async (data) => {
 		try {
-
 			const createCategoryResponse = await fetch('http://localhost:8000/category/', {
 				method: 'POST',
 				credentials: 'include',
@@ -176,7 +175,7 @@ class Category extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div style={{backgroundColor: '#383838', height: '80vh'}}>
 				{
 					this.props.painpointID
 					? <div>
@@ -189,15 +188,14 @@ class Category extends React.Component {
 								selectingForPainpoint={true}
 							/>
 						</div>
-					: <div>
-							<h1>Categories</h1>
+					: <div style={{position: 'absolute', marginTop: '40px'}}>
 							<CategoryList
 								categories={this.state.categories}
 								selectCategory={this.selectCategory}
 								filterSearch={this.filterSearch}
 								categoriesSelected={this.state.categoriesSelected}
 								painpointCategoryJoin={this.painpointCategoryJoin}
-							/><br />
+							/>
 							<CreateCategory createCategory={this.createCategory}/>
 						</div>
 				}
