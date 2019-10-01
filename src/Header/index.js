@@ -66,11 +66,19 @@ class Header extends React.Component {
 					>INDUSTRIES</div>
 				</div>
 				<div className='nav-title'>PAINPOINTS</div>
-				<div 
-					className='nav-button'
-					id='nav-logout'
-					onClick={this.handleLogout}
-				>LOGOUT</div>
+				<div className='nav-user'>
+					<div style={{color: 'white'}}>Signed in as <span style={{fontWeight: 'bold'}}>{this.props.username}</span></div>
+					<div 
+						className='nav-button'
+						id='nav-logout'
+						style={{
+							display: 'flex',
+							alignSelf: 'flex-end',
+							marginTop: '10px'
+						}}
+						onClick={this.handleLogout}
+					>LOGOUT</div>
+				</div>
 			</div>
 		)
 	}

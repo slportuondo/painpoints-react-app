@@ -28,7 +28,6 @@ class CreatePainpoint extends React.Component {
         <h1>Create a Painpoint</h1>
         <Form onSubmit={this.handleSubmit}>
           <Input
-            size='fluid'
             type='text'
             name='head'
             placeholder='Painpoint name'
@@ -44,7 +43,6 @@ class CreatePainpoint extends React.Component {
           />
           <br/>
           <Input
-              size='fluid'
               type='text'
               name='attachment'
               placeholder='attach a file'

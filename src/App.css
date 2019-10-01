@@ -160,8 +160,6 @@
 	font-size: 12px;
 	letter-spacing: 3px;
 	margin: 0;
-	right: 30px;
-	position: absolute;
 }
 
 #nav-home {
@@ -176,6 +174,14 @@
 	border-radius: 50px;
 	background-color: #c5c2c2;
 	font-size: 8px;
+}
+
+.nav-user {
+	position: absolute;
+	right: 30px; 
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
 }
 
 /* ===== CATEGORIES/INDUSTRIES ===== */

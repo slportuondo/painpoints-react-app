@@ -17,9 +17,9 @@ class App extends React.Component {
     super()
 
     this.state = {
-      username: '',
-      email: '',
-      id: '',
+      username: 'jeremychon',
+      email: 'j@gmail.com',
+      id: '7',
       filter: [],
       loggedIn: true
     }
@@ -127,7 +127,14 @@ class App extends React.Component {
 
 
           <Route>
-            {this.state.loggedIn ? <Header logout={this.logout} userId={this.state.id}/> : null }
+            {this.state.loggedIn ? 
+              <Header 
+                logout={this.logout} 
+                userId={this.state.id}
+                username={this.state.username}
+              /> 
+              : null 
+            }
             <Route path='/user/:id'
               render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
             <Route exact path='/painpoints'
