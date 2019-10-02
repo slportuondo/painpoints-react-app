@@ -1,4 +1,5 @@
 import React from 'react'
+import { Form, Input, Button } from 'semantic-ui-react'
 
 class EditPainpoint extends React.Component {
   constructor() {
@@ -32,22 +33,24 @@ class EditPainpoint extends React.Component {
     return(
       <div>
         <h1>Edit Painpoint</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
+        <Form onSubmit={this.handleSubmit}>
+          <Input
             type='text'
             name='head'
             placeholder="Painpoint Name"
             value={this.state.head}
             onChange={this.handleChange} />
-          <input
+          <br/>
+          <Input
             type='text'
             name='body'
             placeholder="Enter painpoint description"
             value={this.state.body}
             onChange={this.handleChange}
           />
-          <button type='Submit'> Submit </button>
-        </form>
+          <br/>
+        <Button type='Submit' size='tiny'> Submit </Button>
+        </Form>
       </div>
     )
   }

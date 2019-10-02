@@ -5,8 +5,8 @@ const CategoryList = (props) => {
 
 	const listOfCategories = props.categories.map((category, i) => {
 		return (
-			<button 
-				key={i}  
+			<button
+				key={i}
 				className='cat-button'
 				onClick={props.selectCategory.bind(null, category)}
 			>
@@ -14,12 +14,12 @@ const CategoryList = (props) => {
 			</button>
 		)
 	})
-	
+
 	const filteredCategories = props.categoriesSelected.map((filteredCategory, i) => {
 		return (
-			<button 
+			<button
 				key={i}
-				className='cat-button' 
+				className='cat-button'
 				style={{backgroundColor: '#66cc72'}}
 			>
 				{filteredCategory.category}
@@ -35,8 +35,8 @@ const CategoryList = (props) => {
 			<div className='category-list-search'>
 				{
 					props.selectingForPainpoint
-						? <Button onClick={() => props.painpointCategoryJoin()}>Add Categories</Button> 
-						: 
+						? <Button onClick={() => props.painpointCategoryJoin()}>Add Categories</Button>
+						:
 						<button
 							className='cat-button'
 							style={{backgroundColor: '#c5c2c2'}}
@@ -47,7 +47,6 @@ const CategoryList = (props) => {
 			<div className='category-list-search'>
 				{filteredCategories}
 			</div>
-
 
 		</div>
 	)

@@ -20,6 +20,16 @@ class PainpointContainer extends React.Component {
 		this.getPainpoints()
 	}
 
+	editing = () => {
+		let store = this.state.addingCategories
+		this.setState({
+			addingCategories: (!store)
+		})
+		if (!store) {
+			this.getPainpoints()
+		}
+	}
+
 	getPainpoints = async () => {
 
 		try {
@@ -140,6 +150,15 @@ class PainpointContainer extends React.Component {
 					<Grid.Column width={2}></Grid.Column>
 					<Grid.Column width={6} >
 						<CreatePainpoint addPainpoint={this.addPainpoint}/>
+						{
+							this.state.addingCategories ? 
+								<Category 
+									painpointID={this.state.painpoints[0].painpoint.id} 
+									addingCategories={this.state.addingCategories} 
+									stillEditing={this.editing}
+								/>
+								: null
+						}
 						<PainpointList 
 							painpoints={this.state.painpoints} 
 							setPainpointToEdit={this.setPainpointToEdit} 
@@ -147,12 +166,7 @@ class PainpointContainer extends React.Component {
 							userId={this.props.userId}
 						/>
 						{
-							this.state.addingCategories ? 
-							<Category 
-								painpointID={this.state.painpoints[0].painpoint.id} 
-								addingCategories={this.state.addingCategories}
-							/>
-							: (this.state.painpointToEdit === -1)
+							(this.state.painpointToEdit === -1)
 								? null : 
 								<EditPainpoint 
 									painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  

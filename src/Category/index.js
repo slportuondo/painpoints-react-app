@@ -56,7 +56,7 @@ class Category extends React.Component {
 		const allCategories = await categoriesResponse.json()
 
 		let selectedCats = this.state.categoriesSelected
-		
+
 		if (selectedCats.length === 0) {
 			this.setState({
 				categoriesSelected: [category]
@@ -144,7 +144,7 @@ class Category extends React.Component {
 						}
 					})
 					const joinPPCResponseParsed = await joinPPCResponse.json()
-
+					this.props.stillEditing()
 				} catch (err) {
 					console.log(err);
 				}
