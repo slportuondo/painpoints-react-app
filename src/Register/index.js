@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-// import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 
 class Register extends React.Component {
 	constructor() {

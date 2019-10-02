@@ -1,6 +1,5 @@
 import React from 'react'
 import ProfileList from '../Profile/ProfileList'
-import { Divider } from 'semantic-ui-react'
 
 class Profile extends React.Component {
 	constructor() {

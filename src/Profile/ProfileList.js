@@ -1,5 +1,4 @@
 import React from 'react'
-import { Grid, Container, List } from 'semantic-ui-react'
 
 const ProfileList = (props) => {
 

@@ -138,7 +138,7 @@ class App extends React.Component {
             <Route path='/user/:id'
               render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
             <Route exact path='/painpoints'
-              render={(props) => <PainpointContainer {...props} />}/>
+              render={(props) => <PainpointContainer {...props} userId={this.state.id}/>}/>
             <Route exact path='/painpoint/:id'
               render={(props) => <SolutionContainer {...props} />}/>
             <Route exact path='/categories'
