@@ -19,7 +19,7 @@ class Header extends React.Component {
 		console.log(this.props);
 
 		const { history } = this.props
-		if (history) history.push('/user/login')
+		if (history) history.push('/')
 	}
 
 	goToCategories = (e) => {

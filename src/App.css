@@ -1,302 +1,287 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap');
-
 /* ===== SIGN IN ===== */
-
+a {
+    color: white;
+}
+a:hover {
+    color: lightblue;
+}
 .signIn {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
-
 .signinContainer {
-	height: 100vh;
-	width: 50%;
-	background: linear-gradient(to top, #5d2682 0%, #bf8de0 100%);
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-content: center;	
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    background: linear-gradient(to top, #5d2682 0%, #bf8de0 100%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
-
 .signInSpace {
-	height: 100vh;
-	width: 50%;
-	background-color: #ededed;
+    height: 100vh;
+    width: 0%;
+    background-color: #ededed;
 }
-
 .signInTitle {
-	font-size: 35px;
-	font-family: 'Roboto', sans-serif;
-	font-weight: bolder;
-	text-decoration: underline;
-	color: white;
-	text-align: center;
+    font-size: 35px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    text-decoration: underline;
+    color: white;
+    text-align: center;
 }
-
 .ui.button.signInLoginButton {
-	width: 300px;
-	height: 50px;
-	background: #6f2f9b;
-	color: white;
-	margin: 10px auto;
-	border-radius: 10px;
-	font-family: 'Roboto', sans-serif;
+    width: 300px;
+    height: 50px;
+    background: #6f2f9b;
+    color: white;
+    margin: 10px auto;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
 }
-
 .ui.button.signInRegisterButton {
-	width: 300px;
-	height: 50px;
-	background-color: #c5c2c2;
-	color: white;
-	margin: 10px auto;
-	border-radius: 10px;
-	font-family: 'Roboto', sans-serif;
+    width: 300px;
+    height: 50px;
+    background-color: #c5c2c2;
+    color: white;
+    margin: 10px auto;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
 }
-
-
 /* ===== REGISTER/LOGIN ====== */
-
 .register-login {
-	height: 100vh;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #ededed;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ededed;
 }
-
 .signInForms {
-	width: 320px;
+    width: 320px;
 }
-
 .signInFormInput {
-	width: 300px;
-	height: 50px;
-	background-color: #6f2f9b;
-	border: 0;
-	border-radius: 10px;
-	text-align: center;
-	color: white;
-	font-family: 'Roboto', sans-serif;
-	font-size: 25px;
-	font-weight: bolder;
-	margin: 10px 0;
+    width: 300px;
+    height: 50px;
+    background-color: #6f2f9b;
+    border: 0;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    font-weight: bolder;
+    margin: 10px 0;
 }
-
 .signInFormInput::placeholder {
-	color: white;
-	font-family: 'Roboto', sans-serif;
-	font-weight: bolder;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
 }
-
 .signInFormInput:focus::placeholder {
-	color: transparent;
+    color: transparent;
 }
-
 .signInFormButton {
-	width: 300px;
-	height: 50px;
-	border-radius: 10px;
-	background-color: #c5c2c2;
-	margin: 10px 0;
-	font-family: 'Roboto', sans-serif;
-	font-size: 25px;
-	font-weight: bolder;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #c5c2c2;
+    margin: 10px 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    font-weight: bolder;
 }
-
-
 /* ===== HEADER ===== */
-
 .nav {
-	height: 20vh;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	background-color: black;
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: black;
 }
-
 .user.circle.icon.nav-profile {
-	font-size: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 10px 5px;
-	color: white;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5px;
+    color: white;
 }
-
 .nav-items {
-	display: flex;
-	flex-direction: row;
-	width: 200px;
-	margin: 0 30px;
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    margin: 0 30px;
 }
-
 .nav-button {
-	width: 50px;
-	color: white;
-	font-family: 'Roboto', sans-serif;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 10px;
+    width: 50px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
 }
-
 .nav-title {
-	color: white;
-	width: 25%;
-	text-align: center;
-	font-size: 40px;
-	font-family: 'Roboto', sans-serif;
-	font-weight: bolder;
+    color: white;
+    width: 25%;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
 }
-
 #nav-logout {
-	height: 30px;
-	width: 100px;
-	border-radius: 10px;
-	background-color: #75160f;
-	font-size: 12px;
-	letter-spacing: 3px;
-	margin: 0;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: #75160f;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin: 0;
 }
-
 #nav-home {
-	height: 50px;
-	border-radius: 50px;
-	background-color: #6f2f9b;
-	font-size: 10px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #6f2f9b;
+    font-size: 10px;
 }
-
 #nav-ind {
-	height: 50px;
-	border-radius: 50px;
-	background-color: #c5c2c2;
-	font-size: 8px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #c5c2c2;
+    font-size: 8px;
 }
-
 .nav-user {
-	position: absolute;
-	right: 30px; 
-	display: flex;
-	justify-content: flex-end;
-	flex-direction: column;
+    position: absolute;
+    right: 30px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
 }
-
 /* ===== CATEGORIES/INDUSTRIES ===== */
-
 .category-list {
-	width: 80%;
-	margin: 0 auto 25px auto;
-	columns: 5;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+    width: 80%;
+    margin: 0 auto 25px auto;
+    columns: 5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-
 .cat-button {
-	width: 150px;
-	height: 40px;
-	background-color: #6f2f9b;
-	border-radius: 30px;
-	border: none;
-	color: white;
-	font-family: 'Be Vietnam', sans-serif;
-	font-weight: lighter;
-	font-size: 20px;
-	margin: 0 10px 20px 10px;
+    width: 150px;
+    height: 40px;
+    background-color: #6f2f9b;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-family: 'Be Vietnam', sans-serif;
+    font-weight: lighter;
+    font-size: 20px;
+    margin: 0 10px 20px 10px;
 }
-
+.cat-button:active {
+    background-color: #6f3f5b;
+}
 .category-list-search {
-	width: 80%;
-	margin: 0 auto;
-	display: flex;
-	justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
-
 .create-category {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	margin-top: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
 }
-
-
 /* ===== PROFILE PAGE ===== */
-
 .profile {
-	width: 100%;
+    width: 100%;
 }
-
 .profile-list {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
-
 .profile-pp-sol {
-	width: 50%;
-	height: auto;
+    width: 50%;
+    height: auto;
 }
-
 .profile-title {
-	font-family: 'Be Vietnam', sans-serif;
-	font-size: 20px;
-	font-weight: bolder;
-	color: white;
-	width: 100%;
-	height: 90px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    font-family: 'Be Vietnam', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 #profile-title-painpoint {
-	background-color: #4f5fd1;
+    background-color: #4f5fd1;
 }
-
 #profile-painpoint {
-	background-color: #8c95db;
+    background-color: #8c95db;
 }
-
 #profile-title-solution {
-	background-color: #62806A;
+    background-color: #62806A;
 }
-
 #profile-solution {
-	background-color: #9fbfa7;
+    background-color: #9fbfa7;
 }
-
 .profile-item {
-	width: 100%;
-	height: 130px;
-	color: white;
-	font-size: 15px;
-	padding-left: 10px;
-	display: flex;
-	flex-wrap: wrap;
-	align-content: space-evenly;
+    width: 100%;
+    height: 130px;
+    color: white;
+    font-size: 15px;
+    padding-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-evenly;
 }
-
 #profile-pp-item {
-	border-bottom: 5px solid #4f5fd1;
+    border-bottom: 5px solid #4f5fd1;
 }
-
 #profile-sol-item {
-	border-bottom: 5px solid #62806A;
+    border-bottom: 5px solid #62806A;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.ppCreateContainer, .ppEditContainer, .ppContainer {
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #4f5fd1;
+    padding: 20px;
+}
+.solCreateContainer, .solEditContainer, .solContainer {
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #62806A;
+    padding: 20px;
+}
+.ppCatList {
+    width: 80%;
+    margin: 0 auto 25px auto;
+    columns: 5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.ppCatButton {
+    flex-wrap: wrap;
+    width: 75px;
+    height: 20px;
+    background-color: #6f2f9b;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-family: 'Be Vietnam', sans-serif;
+    font-weight: lighter;
+    font-size: 10px;
+    margin: 0 5px 10px 5px;
+}

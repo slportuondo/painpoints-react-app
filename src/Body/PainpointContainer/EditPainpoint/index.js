@@ -41,8 +41,7 @@ class EditPainpoint extends React.Component {
             value={this.state.head}
             onChange={this.handleChange} />
           <br/>
-          <Input
-            type='text'
+          <Form.TextArea
             name='body'
             placeholder="Enter painpoint description"
             value={this.state.body}

@@ -8,12 +8,12 @@ const PainpointList = (props) => {
 		console.log(ppc.painpoint, '<---- ppc.id');
 		let eachCategory = ppc.categories.map((cat, idx) => {
 			return (
-							<div key={idx}>
-								<Button disabled size='small' color='green'>
-									{cat.category}
-								</Button>
-							</div>
-						)
+				<div key={idx}>
+					<Button disabled size='small' color='green'>
+						{cat.category}
+					</Button>
+				</div>
+			)
 		})
 		return (
 			<div key={i}>
