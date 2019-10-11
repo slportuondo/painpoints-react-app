@@ -24,33 +24,38 @@ class CreatePainpoint extends React.Component {
 
   render() {
     return(
-      <div>
-        <h1>Create a Painpoint</h1>
-        <Form onSubmit={this.handleSubmit}>
-          <Input
-            type='text'
-            name='head'
-            placeholder='Painpoint name'
-            value={this.state.head}
-            onChange={this.handleChange} />
-          <br/>
-          <TextArea
-            type='text'
-            name='body'
-            placeholder='Painpoint description'
-            value={this.state.body}
-            onChange={this.handleChange}
-          />
-          <br/>
-          <Input
+      <div className='ppCreateContainer'>
+        <h1 className='ppTitle'>Create a Painpoint</h1>
+        <div>
+          <Form className='ppCreateForm' onSubmit={this.handleSubmit}>
+            <Input
+              style={{width:'90%'}}
               type='text'
-              name='attachment'
-              placeholder='attach a file'
-              value={this.state.attachment}
+              name='head'
+              placeholder='Painpoint name'
+              value={this.state.head}
+              onChange={this.handleChange} />
+            <br/>
+            <TextArea
+              style={{width:'90%'}}
+              type='text'
+              name='body'
+              placeholder='Painpoint description'
+              value={this.state.body}
               onChange={this.handleChange}
-            /><br/>
-          <Button size='large' type='sumbit'>Submit Changes</Button>
-        </Form>
+            />
+            <br/>
+            <Input
+                style={{width:'90%'}}
+                type='text'
+                name='attachment'
+                placeholder='attach a file'
+                value={this.state.attachment}
+                onChange={this.handleChange}
+              /><br/>
+            <Button size='large' type='sumbit'>Submit Changes</Button>
+          </Form>
+        </div>
       </div>
     )
   }

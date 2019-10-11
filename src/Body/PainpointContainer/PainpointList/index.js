@@ -16,7 +16,7 @@ const PainpointList = (props) => {
 			)
 		})
 		return (
-			<div key={i}>
+			<div className='ppContainer' key={i}>
 				<Grid.Row>
 					<h2><Link to={`/painpoint/${ppc.painpoint.id}`}>{ppc.painpoint.head}</Link></h2>
 					<Container>
@@ -29,7 +29,7 @@ const PainpointList = (props) => {
 						<Button.Group>{eachCategory}</Button.Group>
 					</Container>
 					{
-						props.userId == ppc.painpoint.owner.id ? 
+						props.userId == ppc.painpoint.owner.id ?
 						<Container>
 							<Button onClick={() => props.setPainpointToEdit(i)}>Edit</Button>
 							<Button onClick={() => props.destroyPainpoint(i, ppc.painpoint.id)}>Delete</Button>
