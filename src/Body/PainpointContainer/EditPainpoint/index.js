@@ -31,7 +31,7 @@ class EditPainpoint extends React.Component {
     console.log("props in render() PainpointContainer");
     console.log(this.props);
     return(
-      <div>
+      <div className='ppEditContainer'>
         <h1>Edit Painpoint</h1>
         <Form onSubmit={this.handleSubmit}>
           <Input

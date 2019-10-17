@@ -28,7 +28,7 @@ class CreateSolution extends React.Component {
 	render() {
 		console.log(this.state, '<--- this.state in CreateSolution');
 		return (
-			<div>
+			<div className='solCreateContainer'>
 				<h2>Create Solution Form</h2>
 				<form onSubmit={this.handleSubmit}>
 					<input
