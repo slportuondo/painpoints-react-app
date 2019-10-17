@@ -3,7 +3,6 @@ import React from 'react'
 
 const SolutionsList = (props) => {
 
-	console.log(props, '<---- props in SolutionsList');
 	const allSolutions = props.solutions.filter(sol => sol.painpoint.id === parseInt(props.painpointId))
 		.map((solution, i) => {
 			return(

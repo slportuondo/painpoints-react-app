@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap');
+
 /* ===== SIGN IN ===== */
+
 a {
     color: white;
 }
+
 a:hover {
     color: lightblue;
 }
+
 .signIn {
     display: flex;
     flex-direction: row;
 }
+
 .signinContainer {
     height: 100vh;
     width: 100%;
@@ -21,11 +26,13 @@ a:hover {
     justify-content: center;
     align-content: center;
 }
+
 .signInSpace {
     height: 100vh;
     width: 0%;
     background-color: #ededed;
 }
+
 .signInTitle {
     font-size: 35px;
     font-family: 'Roboto', sans-serif;
@@ -34,6 +41,7 @@ a:hover {
     color: white;
     text-align: center;
 }
+
 .ui.button.signInLoginButton {
     width: 300px;
     height: 50px;
@@ -43,6 +51,7 @@ a:hover {
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
 }
+
 .ui.button.signInRegisterButton {
     width: 300px;
     height: 50px;
@@ -52,7 +61,9 @@ a:hover {
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
 }
+
 /* ===== REGISTER/LOGIN ====== */
+
 .register-login {
     height: 100vh;
     width: 100%;
@@ -61,9 +72,11 @@ a:hover {
     justify-content: center;
     background-color: #ededed;
 }
+
 .signInForms {
     width: 320px;
 }
+
 .signInFormInput {
     width: 300px;
     height: 50px;
@@ -77,14 +90,17 @@ a:hover {
     font-weight: bolder;
     margin: 10px 0;
 }
+
 .signInFormInput::placeholder {
     color: white;
     font-family: 'Roboto', sans-serif;
     font-weight: bolder;
 }
+
 .signInFormInput:focus::placeholder {
     color: transparent;
 }
+
 .signInFormButton {
     width: 300px;
     height: 50px;
@@ -95,7 +111,9 @@ a:hover {
     font-size: 25px;
     font-weight: bolder;
 }
-/* ===== HEADER ===== */
+
+/* ===== NAVIGATION BAR ===== */
+
 .nav {
     height: 20vh;
     width: 100%;
@@ -104,6 +122,7 @@ a:hover {
     align-items: center;
     background-color: black;
 }
+
 .user.circle.icon.nav-profile {
     font-size: 50px;
     display: flex;
@@ -112,12 +131,14 @@ a:hover {
     margin: 10px 5px;
     color: white;
 }
+
 .nav-items {
     display: flex;
     flex-direction: row;
     width: 200px;
     margin: 0 30px;
 }
+
 .nav-button {
     width: 50px;
     color: white;
@@ -128,6 +149,7 @@ a:hover {
     align-items: center;
     margin: 10px;
 }
+
 .nav-title {
     color: white;
     width: 25%;
@@ -136,6 +158,7 @@ a:hover {
     font-family: 'Roboto', sans-serif;
     font-weight: bolder;
 }
+
 #nav-logout {
     height: 30px;
     width: 100px;
@@ -145,18 +168,21 @@ a:hover {
     letter-spacing: 3px;
     margin: 0;
 }
+
 #nav-home {
     height: 50px;
     border-radius: 50px;
     background-color: #6f2f9b;
     font-size: 10px;
 }
+
 #nav-ind {
     height: 50px;
     border-radius: 50px;
     background-color: #c5c2c2;
     font-size: 8px;
 }
+
 .nav-user {
     position: absolute;
     right: 30px;
@@ -164,7 +190,9 @@ a:hover {
     justify-content: flex-end;
     flex-direction: column;
 }
+
 /* ===== CATEGORIES/INDUSTRIES ===== */
+
 .category-list {
     width: 80%;
     margin: 0 auto 25px auto;
@@ -173,6 +201,7 @@ a:hover {
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .cat-button {
     width: 150px;
     height: 40px;
@@ -185,34 +214,42 @@ a:hover {
     font-size: 20px;
     margin: 0 10px 20px 10px;
 }
+
 .cat-button:active {
     background-color: #6f3f5b;
 }
+
 .category-list-search {
     width: 80%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
 }
+
 .create-category {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 25px;
 }
+
 /* ===== PROFILE PAGE ===== */
+
 .profile {
     width: 100%;
 }
+
 .profile-list {
     width: 100%;
     display: flex;
     flex-direction: row;
 }
+
 .profile-pp-sol {
     width: 50%;
     height: auto;
 }
+
 .profile-title {
     font-family: 'Be Vietnam', sans-serif;
     font-size: 20px;
@@ -224,6 +261,7 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
+
 #profile-title-painpoint {
     background-color: #4f5fd1;
 }
@@ -236,6 +274,7 @@ a:hover {
 #profile-solution {
     background-color: #9fbfa7;
 }
+
 .profile-item {
     width: 100%;
     height: 130px;

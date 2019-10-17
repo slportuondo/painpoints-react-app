@@ -29,7 +29,7 @@ const PainpointList = (props) => {
 						<Button.Group>{eachCategory}</Button.Group>
 					</Container>
 					{
-						props.userId == ppc.painpoint.owner.id ? 
+						props.userId === ppc.painpoint.owner.id ? 
 						<Container>
 							<Button onClick={() => props.setPainpointToEdit(i)}>Edit</Button>
 							<Button onClick={() => props.destroyPainpoint(i, ppc.painpoint.id)}>Delete</Button>

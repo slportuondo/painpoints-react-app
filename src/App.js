@@ -17,9 +17,9 @@ class App extends React.Component {
     super()
 
     this.state = {
-      username: '',
-      email: '',
-      id: '',
+      username: 'jsmith',
+      email: 'jsmith@gmail.com',
+      id: '2',
       filter: [],
       loggedIn: true
     }
