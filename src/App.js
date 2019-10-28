@@ -17,11 +17,11 @@ class App extends React.Component {
     super()
 
     this.state = {
-      username: 'jchon',
-      email: 'jchon@gmail.com',
-      id: '1',
+      username: '',
+      email: '',
+      id: 0,
       filter: [],
-      loggedIn: true,
+      loggedIn: false,
       incorrectLogin: false,
       userAlreadyExists: false
     }
