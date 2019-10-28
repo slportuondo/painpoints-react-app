@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Login from './Login'
 import Register from './Register'
 import SignIn from './SignIn'
@@ -17,49 +17,48 @@ class App extends React.Component {
     super()
 
     this.state = {
-      username: 'jsmith',
-      email: 'jsmith@gmail.com',
-      id: '2',
+      username: 'jchon',
+      email: 'jchon@gmail.com',
+      id: '1',
       filter: [],
-      loggedIn: true
+      loggedIn: true,
+      incorrectLogin: false,
+      userAlreadyExists: false
     }
   }
 
   login = async (data) => {
+
     const loginResponse = await fetch('http://localhost:8000/user/login', {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(data),
       headers: {
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json'
       }
     })
 
-    console.log(loginResponse, '<--- loginResponse');
+    const parsedResponse = await loginResponse.json();
 
-    if (loginResponse.status !== 200) {
-        console.log('not 200');
+    if (parsedResponse.status.code !== 200) {
+
         const { history } = this.props
         if (history) history.push('/user/login')
-    }
+        this.setState({incorrectLogin: true})
 
-    const parsedResponse = await loginResponse.json();
-    console.log(parsedResponse, '<---- parsedResponse in login');
+    } else {
 
-    if (parsedResponse) {
       this.setState({
         ...parsedResponse.data,
         loggedIn: true
       })
-      return parsedResponse.data
-
-    } else {
-      console.log('Incorrect username and/or password');
+      
+      const { history } = this.props
+      if (history) history.push('/categories')
     }
   }
 
   logout = async () => {
-    console.log('hitting logout');
     await fetch('http://localhost:8000/user/logout', {
       method: 'POST',
       credentials: 'include'
@@ -71,12 +70,9 @@ class App extends React.Component {
       id: '',
       loggedIn: false
     })
-
   }
 
-
   register = async (data) => {
-    // console.log(data, '<--- data in register in App.js');
     try {
       const registerResponse = await fetch('http://localhost:8000/user/register', {
         method: 'POST',
@@ -88,18 +84,20 @@ class App extends React.Component {
       })
 
       const parsedResponse = await registerResponse.json();
-      // console.log(parsedResponse, '<--- parsedResponse in register');
 
-      if (parsedResponse) {
+      if (parsedResponse.status.code === 200) {
         this.setState({
           ...parsedResponse.data,
           loggedIn: true
         })
 
-        return parsedResponse
+        const { history } = this.props
+        if (history) history.push('/categories')
 
       } else {
-        console.log('There was an error registering for an account');
+        const { history } = this.props
+        if (history) history.push('/user/register')
+        this.setState({userAlreadyExists: true})
       }
 
     } catch (err) {
@@ -112,40 +110,50 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state, '<--- this.state in app.js');
+    // console.log(this.state, '<--- this.state in app.js');
 
     return (
       <main>
         <Switch>
-
           <Route exact path='/'
             render={(props) => <SignIn {...props} />} />
           <Route exact path='/user/login'
-            render={(props) => <Login {...props} login={this.login} />}/>
+            render={(props) => <Login {...props} incorrectLogin={this.state.incorrectLogin} login={this.login} />}/>
           <Route exact path='/user/register'
-            render={(props) => <Register {...props} register={this.register} />}/>
+            render={(props) => <Register {...props} userAlreadyExists={this.state.userAlreadyExists} register={this.register} />}/>
 
 
-          <Route>
-            {this.state.loggedIn ? 
+          {
+            this.state.loggedIn ? 
+            <Route>
               <Header 
                 logout={this.logout} 
                 userId={this.state.id}
                 username={this.state.username}
               /> 
-              : null 
-            }
-            <Route path='/user/:id'
-              render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}/>
-            <Route exact path='/painpoints'
-              render={(props) => <PainpointContainer {...props} userId={this.state.id}/>}/>
-            <Route exact path='/painpoint/:id'
-              render={(props) => <SolutionContainer {...props} />}/>
-            <Route exact path='/categories'
-              render={(props) => <Category {...props} getFilter={this.getFilter} />}/>
-            <Route exact path='/painpoints/filter'
-              render={(props) => <FilterPainpoint {...props} filter={this.state.filter} />} />
-          </Route>
+              <Route
+                path='/user/:id'
+                render={(props) => <Profile {...props} getUserInfo={this.getUserInfo} />}
+              />
+              <Route 
+                exact path='/painpoints'
+                render={(props) => <PainpointContainer {...props} userId={this.state.id}/>}
+              />
+              <Route 
+                exact path='/painpoint/:id'
+                render={(props) => <SolutionContainer {...props} />}
+              />
+              <Route 
+                exact path='/categories'
+                render={(props) => <Category {...props} getFilter={this.getFilter} />}
+              />
+              <Route 
+                exact path='/painpoints/filter'
+                render={(props) => <FilterPainpoint {...props} filter={this.state.filter} />}
+              />
+            </Route>
+            : <Redirect to='/' /> 
+          }
 
         </Switch>
 

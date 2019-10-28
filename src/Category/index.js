@@ -1,8 +1,6 @@
 import React from 'react'
 import CategoryList from '../Category/CategoryList'
 import CreateCategory from '../Category/CreateCategory'
-// import Header from '../Header'
-// import { Input, Form, Button, List } from 'semantic-ui-react'
 
 class Category extends React.Component {
 	constructor(props) {
@@ -30,7 +28,6 @@ class Category extends React.Component {
 			}
 
 			const allCategories = await categoriesResponse.json()
-			console.log(allCategories, '<--- allCategories');
 
 			this.setState({
 				categories: allCategories.data
@@ -44,20 +41,10 @@ class Category extends React.Component {
 	selectCategory = async (category, e) => {
 		e.preventDefault()
 
-		const categoriesResponse = await fetch('http://localhost:8000/category/', {
-			method: 'GET',
-			credentials: 'include'
-		})
-
-		if (categoriesResponse.status !== 200) {
-			throw Error('categoriesResponse is not working')
-		}
-
-		const allCategories = await categoriesResponse.json()
-
 		let selectedCats = this.state.categoriesSelected
 
 		if (selectedCats.length === 0) {
+
 			this.setState({
 				categoriesSelected: [category]
 			})
@@ -70,10 +57,10 @@ class Category extends React.Component {
 			for (let i = 0; i < selectedCats.length; i++) {
 
 				if (category.id === selectedCats[i].id) {
-					let newCategories = selectedCats.splice(i, 1)
+					let newCategories = selectedCats.filter(cats => cats.id !== category.id)
 
 					this.setState({
-						categoriesSelected: [...selectedCats]
+						categoriesSelected: newCategories
 					})
 
 					return
@@ -81,19 +68,12 @@ class Category extends React.Component {
 			}
 
 			if (selectedCats.length < 3) {
-				for (let i = 0; i < allCategories.data.length; i++) {
-					// check if the category selected matches any of the categories in the list
-					if (allCategories.data[i].id === category.id) {
+				
+				this.setState({
+					categoriesSelected: [...selectedCats, category]
+				})
 
-						// check all categories that were already selected and see if they already match the chosen category. if it does, then remove it
-
-						this.setState({
-							categoriesSelected: [...this.state.categoriesSelected, allCategories.data[i]]
-						})
-
-						return
-					}
-				}
+				return
 			}
 		}
 	}
@@ -106,89 +86,90 @@ class Category extends React.Component {
 
 	createCategory = async (data) => {
 		try {
-			const createCategoryResponse = await fetch('http://localhost:8000/category/', {
-				method: 'POST',
-				credentials: 'include',
-				body: JSON.stringify(data),
-				headers: {
-					'Content-type': 'application/json'
-				}
-			})
+			if (this.state.categories.some(cat => cat.category === data.category)) {
+				console.log('That category already exists');
+			} else {
+				const createCategoryResponse = await fetch('http://localhost:8000/category/', {
+					method: 'POST',
+					credentials: 'include',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
 
-			const createdCategory = await createCategoryResponse.json()
+				const createdCategory = await createCategoryResponse.json()
 
-			this.setState({
-				categories: [...this.state.categories, createdCategory.data]
-			})
-
+				this.setState({
+					categories: [...this.state.categories, createdCategory.data]
+				})
+			}
 		} catch (err) {
 			console.log(err);
 		}
 	}
 
-	painpointCategoryJoin = async() => {
-		if (this.state.categoriesSelected !== []){
-			this.state.categoriesSelected.forEach(async (cat, i) => {
-				let data = {
-					painpoint: this.props.painpointID,
-					category: cat.id
-				}
-				try {
-					const url = 'http://localhost:8000/pp_cat_join/'
-					const joinPPCResponse = await fetch(url, {
-						method: 'POST',
-						credentials: 'include',
-						body: JSON.stringify(data),
-						headers: {
-							'Content-Type': 'application/json'
-						}
-					})
-					const joinPPCResponseParsed = await joinPPCResponse.json()
-					this.props.stillEditing()
-				} catch (err) {
-					console.log(err);
-				}
-			})
-		} else {
-				let data = {
-					painpoint: this.props.painpointID,
-					category: 10
-				}
-				try {
-					const url = 'http://localhost:8000/pp_cat_join/'
-					const joinPPCResponse = await fetch(url, {
-						method: 'POST',
-						credentials: 'include',
-						body: JSON.stringify(data),
-						headers: {
-							'Content-Type': 'application/json'
-						}
-					})
-					const joinPPCResponseParsed = await joinPPCResponse.json()
+	// painpointCategoryJoin = async () => {
+	// 	if (this.state.categoriesSelected !== []){
+	// 		this.state.categoriesSelected.forEach(async (cat, i) => {
+	// 			let data = {
+	// 				painpoint: this.props.painpointID,
+	// 				category: cat.id
+	// 			}
+	// 			try {
+	// 				const url = 'http://localhost:8000/pp_cat_join/'
+	// 				const joinPPCResponse = await fetch(url, {
+	// 					method: 'POST',
+	// 					credentials: 'include',
+	// 					body: JSON.stringify(data),
+	// 					headers: {
+	// 						'Content-Type': 'application/json'
+	// 					}
+	// 				})
+	// 				const joinPPCResponseParsed = await joinPPCResponse.json()
+	// 				this.props.stillEditing()
+	// 			} catch (err) {
+	// 				console.log(err);
+	// 			}
+	// 		})
+	// 	} else {
+	// 		let data = {
+	// 			painpoint: this.props.painpointID,
+	// 			category: 10
+	// 		}
+	// 		try {
+	// 			const url = 'http://localhost:8000/pp_cat_join/'
+	// 			const joinPPCResponse = await fetch(url, {
+	// 				method: 'POST',
+	// 				credentials: 'include',
+	// 				body: JSON.stringify(data),
+	// 				headers: {
+	// 					'Content-Type': 'application/json'
+	// 				}
+	// 			})
+	// 			const joinPPCResponseParsed = await joinPPCResponse.json()
 
-				} catch (err) {
-					console.log(err);
-				}
-		}
-
-	}
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 		}
+	// 	}
+	// }
 
 	render() {
 		return (
 			<div style={{backgroundColor: '#383838', height: '80vh'}}>
 				{
-					this.props.painpointID
-					? <div>
+					this.props.tagsForPainpoint
+					? <div className='categoryListCreate'>
 							<CategoryList
 								categories={this.state.categories}
 								selectCategory={this.selectCategory}
 								categoriesSelected={this.state.categoriesSelected}
-								filterSearch={this.filterSearch}
-								painpointCategoryJoin={this.painpointCategoryJoin}
 								selectingForPainpoint={true}
+								chooseCategories={this.props.chooseCategories}
 							/>
 						</div>
-					: <div style={{position: 'absolute', marginTop: '40px'}}>
+					: <div className='categoryListMain'>
 							<CategoryList
 								categories={this.state.categories}
 								selectCategory={this.selectCategory}

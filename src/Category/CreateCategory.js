@@ -1,5 +1,5 @@
 import React from 'react'
-import {Input, Form, Button} from 'semantic-ui-react'
+import { Input, Form, Button } from 'semantic-ui-react'
 
 class CreateCategory extends React.Component {
 	constructor() {
@@ -27,10 +27,9 @@ class CreateCategory extends React.Component {
 	}
 
 	render() {
-		console.log(this.state, '<--- this.state in create category');
 		return (
 			<div className='create-category'>
-				<Form onSubmit={this.handleSubmit}>
+				<Form onSubmit={this.handleSubmit} autoComplete='off'>
 					<Input
 						type='text'
 						name='category'

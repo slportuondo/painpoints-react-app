@@ -1,5 +1,4 @@
 import React from 'react'
-import { Form, Input, Button } from 'semantic-ui-react'
 
 class EditPainpoint extends React.Component {
   constructor() {
@@ -7,14 +6,16 @@ class EditPainpoint extends React.Component {
 
     this.state = {
       head: '',
-      body: ''
+      body: '',
+      attachment: ''
     }
   }
 
   componentDidMount() {
     this.setState({
       head: this.props.painpointToEdit.painpoint.head,
-      body: this.props.painpointToEdit.painpoint.body
+      body: this.props.painpointToEdit.painpoint.body,
+      attachment: this.props.painpointToEdit.painpoint.attachment
     })
   }
 
@@ -24,32 +25,34 @@ class EditPainpoint extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    this.props.updatePainpoint(this.state, this.props.painpointToEdit.painpoint.id)
+    this.props.updatePainpoint(this.state, this.props.painpointToEdit.categories, this.props.painpointToEdit.painpoint.id)
   }
 
   render() {
-    console.log("props in render() PainpointContainer");
-    console.log(this.props);
     return(
       <div className='ppEditContainer'>
-        <h1>Edit Painpoint</h1>
-        <Form onSubmit={this.handleSubmit}>
-          <Input
+        <h2 className='ppTitle'>Edit Painpoint</h2>
+        <form className='ppCreateForm' onSubmit={this.handleSubmit}>
+          <input
+            className='ppCreateFormInputBody'
+            id='ppEditFormHead'
             type='text'
             name='head'
             placeholder="Painpoint Name"
             value={this.state.head}
             onChange={this.handleChange} />
-          <br/>
-          <Form.TextArea
+          <textarea
+            className='ppCreateFormInputBody'
             name='body'
             placeholder="Enter painpoint description"
             value={this.state.body}
             onChange={this.handleChange}
           />
-          <br/>
-        <Button type='Submit' size='tiny'> Submit </Button>
-        </Form>
+          <button 
+            className='ppEditSubmit'
+            style={{backgroundColor: '#62806A'}}
+          >Submit</button>
+        </form>
       </div>
     )
   }

@@ -1,42 +1,49 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, List, Grid, Container } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 
 const PainpointList = (props) => {
 
 	const allPainpoints = props.painpoints.map((ppc, i) => {
-		console.log(ppc.painpoint, '<---- ppc.id');
+	
 		let eachCategory = ppc.categories.map((cat, idx) => {
 			return (
 				<div key={idx}>
-					<Button disabled size='small' color='green'>
+					<button className='ppCatButton'>
 						{cat.category}
-					</Button>
+					</button>
 				</div>
 			)
 		})
+
 		return (
 			<div className='ppContainer' key={i}>
-				<Grid.Row>
-					<h2><Link to={`/painpoint/${ppc.painpoint.id}`}>{ppc.painpoint.head}</Link></h2>
-					<Container>
-						{ppc.painpoint.body}
-					</Container>
-					<Container>
-						{ppc.painpoint.attachment}
-					</Container>
-					<Container>
-						<Button.Group>{eachCategory}</Button.Group>
-					</Container>
-					{
-						props.userId == ppc.painpoint.owner.id ?
-						<Container>
-							<Button onClick={() => props.setPainpointToEdit(i)}>Edit</Button>
-							<Button onClick={() => props.destroyPainpoint(i, ppc.painpoint.id)}>Delete</Button>
-						</Container>
-						: null
-					}
-				</Grid.Row>
+				<h2 className='ppTitle'><Link to={`/painpoint/${ppc.painpoint.id}`}>{ppc.painpoint.head}</Link></h2>
+				<div className='ppInfo'>
+					<p className='ppInfoBody'>{ppc.painpoint.body}</p>
+					<p>{ppc.painpoint.attachment}</p>
+					<div className='ppCatButtonGroup'>
+						{
+							parseInt(props.userId) === ppc.painpoint.owner.id ?
+							<div className='ppInfoEditDelete'>
+								<Icon 
+									onClick={() => props.editingPainpoint(ppc)}
+									name='edit'
+									size='large'
+									link
+								/>
+								<Icon 
+									onClick={() => props.destroyPainpoint(i, ppc.painpoint.id)}
+									name='trash alternate'
+									size='large'
+									link
+								/>
+							</div>
+							: <div className='ppInfoEditDelete'></div>
+						}
+						<div className='ppInfoCats'>{eachCategory}</div>
+					</div>
+				</div>
 			</div>
 		)
 	})
@@ -44,7 +51,7 @@ const PainpointList = (props) => {
 
 	return (
 		<div>
-			<h1>ALL PAINPOINTS</h1>
+			<h1 style={{marginTop: '20px'}}>ALL PAINPOINTS</h1>
 			{allPainpoints}
 		</div>
 	)

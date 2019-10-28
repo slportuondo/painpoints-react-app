@@ -2,15 +2,16 @@ import React from 'react'
 import PainpointList from './PainpointList'
 import CreatePainpoint from './CreatePainpoint'
 import EditPainpoint from './EditPainpoint'
-import Category from '../../Category'
-import { Grid } from 'semantic-ui-react'
+import { Modal } from 'semantic-ui-react'
+
 class PainpointContainer extends React.Component {
 	constructor() {
 		super()
 
 		this.state = {
 			painpoints: [],
-			painpointToEdit: -1,
+			painpointToEdit: {},
+			openEditModal: false,
 			addingCategories: false
 		}
 
@@ -20,20 +21,9 @@ class PainpointContainer extends React.Component {
 		this.getPainpoints()
 	}
 
-	editing = () => {
-		let store = this.state.addingCategories
-		this.setState({
-			addingCategories: (!store)
-		})
-		if (!store) {
-			this.getPainpoints()
-		}
-	}
-
 	getPainpoints = async () => {
 
 		try {
-			console.log("getPainpoints is working");
 			const getPainpointsResponse = await fetch('http://localhost:8000/painpoints/', {
 				method: 'GET',
 				credentials: 'include'
@@ -54,7 +44,7 @@ class PainpointContainer extends React.Component {
 		}
 	}
 
-	addPainpoint = async (data) => {
+	addPainpoint = async (data, categories) => {
 
 		try {
 
@@ -69,21 +59,47 @@ class PainpointContainer extends React.Component {
 
 			const createdPainpoint = await createPainpointResponse.json()
 
+			categories.forEach(async (cat, i) => {
+
+				let data = {
+					painpoint: createdPainpoint.data.id,
+					category: cat.id
+				}
+
+				try {
+					const url = 'http://localhost:8000/pp_cat_join/'
+
+					const joinPPCResponse = await fetch(url, {
+						method: 'POST',
+						credentials: 'include',
+						body: JSON.stringify(data),
+						headers: {
+							'Content-type': 'application/json'
+						}
+					})
+
+				} catch (err) {
+					console.log(err);
+				}
+			})
+
 			const painpointFormattedForState = {
 				'painpoint': createdPainpoint.data,
-				'categories': []
+				'categories': categories
 			}
+
 			this.setState({
-				painpoints: [painpointFormattedForState, ...this.state.painpoints],
-				addingCategories: true
+				painpoints: [painpointFormattedForState, ...this.state.painpoints]
 			})
+
+			this.getPainpoints()
 
 		} catch (err) {
 			console.log(err);
 		}
 	}
 
-	updatePainpoint = async (data, idOfPainpointToUpdate) => {
+	updatePainpoint = async (data, categories, idOfPainpointToUpdate) => {
 		try {
 			const url = 'http://localhost:8000/painpoints/' + idOfPainpointToUpdate
 			const editedPainpoint = await fetch(url, {
@@ -94,21 +110,25 @@ class PainpointContainer extends React.Component {
 					'Content-Type': 'application/json'
 				}
 			})
+
 			const parsedResponse = await editedPainpoint.json()
 
 			const painpointFormattedForState = {
-				'painpoint': {
-					...parsedResponse.data
-				},
-				'categories': []
+				'categories': categories,
+				'painpoint': parsedResponse.data
 			}
 
-			const newArray = this.state.painpoints
-			newArray[this.state.painpointToEdit] = painpointFormattedForState
+			const newArray = this.state.painpoints.map((pp) => {
+				if (pp.painpoint.id === parsedResponse.data.id) {
+					pp = painpointFormattedForState
+				}
+
+				return pp
+			})
 
 			this.setState({
 				painpoints: newArray,
-				painpointToEdit: -1
+				openEditModal: false
 			})
 
 		} catch (err) {
@@ -116,9 +136,10 @@ class PainpointContainer extends React.Component {
 		}
 	}
 
-	setPainpointToEdit = (indexOfPainpointToEdit) => {
+	editingPainpoint = (ppc) => {
 		this.setState({
-			painpointToEdit: indexOfPainpointToEdit
+			openEditModal: true,
+			painpointToEdit: ppc
 		})
 	}
 
@@ -133,8 +154,10 @@ class PainpointContainer extends React.Component {
 
 			const parsedResponse = await deletePainpointResponse.json()
 
+			const updatedPainpointsList = this.state.painpoints.filter(painpoint => painpoint._id !== parsedResponse._id)
+
 			this.setState({
-				painpoints: this.state.painpoints.filter((painpoint, i) => i !== index)
+				painpoints: updatedPainpointsList
 			})
 
 		} catch (err) {
@@ -143,39 +166,25 @@ class PainpointContainer extends React.Component {
 	}
 
 	render() {
-
 		return (
-			<div>
-				<Grid columns='three' verticalAlign='middle' textAlign='center'>
-					<Grid.Column width={2}></Grid.Column>
-					<Grid.Column width={6} >
-						<CreatePainpoint addPainpoint={this.addPainpoint}/>
-						{
-							this.state.addingCategories ? 
-								<Category 
-									painpointID={this.state.painpoints[0].painpoint.id} 
-									addingCategories={this.state.addingCategories} 
-									stillEditing={this.editing}
-								/>
-								: null
-						}
-						<PainpointList 
-							painpoints={this.state.painpoints} 
-							setPainpointToEdit={this.setPainpointToEdit} 
-							destroyPainpoint={this.destroyPainpoint}
-							userId={this.props.userId}
-						/>
-						{
-							(this.state.painpointToEdit === -1)
-								? null : 
-								<EditPainpoint 
-									painpointToEdit={this.state.painpoints[this.state.painpointToEdit]}  
-									updatePainpoint={this.updatePainpoint} 
-								/>
-						}
-					</Grid.Column>
-					<Grid.Column width={2}></Grid.Column>
-				</Grid>
+			<div className='ppHomePage'>
+				<CreatePainpoint addPainpoint={this.addPainpoint}/>
+				<PainpointList 
+					painpoints={this.state.painpoints} 
+					editingPainpoint={this.editingPainpoint} 
+					destroyPainpoint={this.destroyPainpoint}
+					userId={this.props.userId}
+				/>
+				<Modal
+					open={this.state.openEditModal}
+					onClose={this.updatePainpoint}
+					basic
+				>
+					<EditPainpoint 
+						painpointToEdit={this.state.painpointToEdit}  
+						updatePainpoint={this.updatePainpoint} 
+					/>
+				</Modal>
 			</div>
 		)
 	}

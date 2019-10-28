@@ -1,8 +1,7 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
 
 const CategoryList = (props) => {
-
+	
 	const listOfCategories = props.categories.map((category, i) => {
 		return (
 			<button
@@ -27,7 +26,7 @@ const CategoryList = (props) => {
 		)
 	})
 
-	return(
+	return (
 		<div>
 			<div className='category-list'>
 				{listOfCategories}
@@ -35,7 +34,12 @@ const CategoryList = (props) => {
 			<div className='category-list-search'>
 				{
 					props.selectingForPainpoint
-						? <Button onClick={() => props.painpointCategoryJoin()}>Add Categories</Button>
+						? 
+						<button 
+							className='cat-button'
+							style={{backgroundColor: '#c5c2c2'}}
+							onClick={() => props.closeAddCatModal()}
+						>Add Categories</button>
 						:
 						<button
 							className='cat-button'

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Login extends React.Component {
 	constructor() {
@@ -19,40 +20,16 @@ class Login extends React.Component {
 		e.preventDefault()
 
 		this.props.login(this.state)
-
-		
-
-		this.props.history.push('/categories')
-
-		// const loginResponse = await fetch('http://localhost:8000/user/login', {
-		// 	method: 'POST',
-		// 	credentials: 'include',
-		// 	body: JSON.stringify(this.state),
-		// 	headers: {
-		// 	'Content-Type': 'application/json'
-		// 	}
-		// })
-
-		// const parsedResponse = await loginResponse.json();
-		// console.log(parsedResponse, '<---- parsedResponse in login');
-
-		// if (parsedResponse) {
-		// 	this.setState({
-		// 	...parsedResponse.data
-		// 	})
-
-		// 	this.props.history.push('/user/' + this.state.id)
-
-		// } else {
-		// 	console.log('Incorrect username and/or password');
-		// }
-
 	}
 
 	render() {
-		console.log(this.state, '<---- this.state in Login');
 		return (
 			<div className='register-login'>
+				{
+					this.props.incorrectLogin ?
+					<div className='loginError'>Incorrect login information</div>
+					: null
+				}
 				<form 
 					className='signInForms' 
 					onSubmit={this.handleSubmit}
@@ -84,6 +61,7 @@ class Login extends React.Component {
 					/>
 					<button className='signInFormButton'>SUBMIT</button>
 				</form>
+				<Link to='/user/register' className='loginOrRegister'>Not a user? Register here!</Link>
 			</div>
 		)
 	}

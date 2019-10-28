@@ -6,18 +6,22 @@ const SolutionsList = (props) => {
 	const allSolutions = props.solutions.filter(sol => sol.painpoint.id === parseInt(props.painpointId))
 		.map((solution, i) => {
 			return(
-				<li className='solContainer' key={i}>
-					<div>Head: {solution.head}</div>
-					<div>Body: {solution.body}</div>
-					<div>Painpoint: {solution.painpoint.head}</div><br />
-				</li>
+				<div className='solContainer' key={i}>
+					<h2 
+						className='ppTitle' 
+						style={{backgroundColor: '#62806A'}}
+					>{solution.head}</h2>
+					<div className='ppInfo'>
+						<p className='ppInfoBody'>{solution.body}</p>
+						<p className='ppInfoFile'>{solution.attachment}</p>
+					</div>
+				</div>
 			)
 		})
 
 	return (
 		<div>
-			<h2>Solutions List</h2>
-			<ul>{allSolutions}</ul>
+			{allSolutions}
 		</div>
 	)
 }

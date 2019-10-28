@@ -26,33 +26,39 @@ class CreateSolution extends React.Component {
 	}
 
 	render() {
-		console.log(this.state, '<--- this.state in CreateSolution');
 		return (
 			<div className='solCreateContainer'>
-				<h2>Create Solution Form</h2>
-				<form onSubmit={this.handleSubmit}>
+				<form autoComplete='off' onSubmit={this.handleSubmit} className='ppCreateForm'>
 					<input
+						className='ppCreateFormInputTitle'
 						type='text'
 						name='head'
-						placeholder='Solution Title'
+						placeholder='Enter solution title here...'
 						value= {this.state.head}
 						onChange={this.handleChange}
-					/><br />
+						style={{backgroundColor: '#62806A'}}
+					/>
 					<textarea
+						className='ppCreateFormInputBody'
 						type='text'
 						name='body'
 						placeholder='Solution Description'
 						value= {this.state.body}
 						onChange={this.handleChange}
-					/><br />
-					<input
-						type='attachment'
-						name='attachment'
-						placeholder='Attachment'
-						value= {this.state.attachment}
-						onChange={this.handleChange}
-					/><br />
-					<button>Create</button>
+					/>
+					<div className='ppCreateFormBottom'>
+						<input
+							className='ppCreateFormInputFile'
+							type='attachment'
+							name='attachment'
+							placeholder='attach file'
+							value= {this.state.attachment}
+							onChange={this.handleChange}
+						/>
+						<button
+							className='ppCreateSubmit'
+						>Create</button>
+					</div>
 				</form>
 			</div>
 		)

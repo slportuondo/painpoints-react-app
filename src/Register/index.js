@@ -1,15 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Register extends React.Component {
 	constructor() {
 		super()
 
 		this.state = {
-			fullName: '',
+			full_name: '',
 			username: '',
 			email: '',
-			password: '',
-			id: ''
+			password: ''
 		}
 	}
 
@@ -29,44 +29,16 @@ class Register extends React.Component {
 
 		this.props.register(data);
 
-		this.props.history.push('/categories')
-
-
-		// === IF WE WANT TO SHOW THE PROFILE PAGE RIGHT AWAY === //
-		// try {
-	 //      const registerResponse = await fetch('http://localhost:8000/user/register', {
-	 //        method: 'POST',
-	 //        credentials: 'include',
-	 //        body: data,
-	 //        headers: {
-	 //          'enctype': 'multipart/form-data'
-	 //        }
-	 //      })
-
-	 //      const parsedResponse = await registerResponse.json();
-	 //      console.log(parsedResponse, '<--- parsedResponse in register');
-
-	 //      if (parsedResponse) {
-	 //        this.setState({
-	 //          ...parsedResponse.data
-	 //        })
-		//     this.props.history.push('/user/' + this.state.id)
-
-	 //        // return parsedResponse
-
-	 //      } else {
-	 //        console.log('There was an error registering for an account');
-	 //      }
-
-	 //    } catch (err) {
-	 //      console.log(err)
-	 //    }
-
 	}
 
 	render() {
 		return (
 			<div className='register-login'>
+				{
+					this.props.userAlreadyExists ?
+					<div className='loginError'>A user with that email already exists</div>
+					: null
+				}
 				<form 
 					className='signInForms' 
 					onSubmit={this.handleSubmit}
@@ -75,7 +47,7 @@ class Register extends React.Component {
 					<input
 						className='signInFormInput'
 						type='text'
-						name='fullName' 
+						name='full_name' 
 						placeholder='FULL NAME'
 						value={this.state.fullName}
 						onChange={this.handleChange}
@@ -106,6 +78,7 @@ class Register extends React.Component {
 					/>
 					<button className='signInFormButton'>SUBMIT</button>
 				</form>
+				<Link to='/user/login' className='loginOrRegister'>Already a user? Log in here!</Link>
 			</div>
 		)
 	}

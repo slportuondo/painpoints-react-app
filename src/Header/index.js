@@ -2,7 +2,6 @@ import React from 'react'
 import { withRouter } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react'
 
-// const Header = (props) => {
 class Header extends React.Component {
 	constructor() {
 		super()
@@ -16,7 +15,6 @@ class Header extends React.Component {
 		e.preventDefault()
 
 		this.props.logout()
-		console.log(this.props);
 
 		const { history } = this.props
 		if (history) history.push('/')
@@ -45,7 +43,6 @@ class Header extends React.Component {
 
 
 	render() {	
-		console.log(this.state, '<---- state in Header');
 		return (
 			<div className='nav'>
 				<div className='nav-items'>
